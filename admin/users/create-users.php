@@ -8,16 +8,13 @@
             </a>
         </div>
 
-
         <!-- DataTales for users management-->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
                 <h6 class="m-0 font-weight-bold text-primary">Ajout d'un utilisateur <a href="users.php" class="text-end btn btn-danger btn-sm float-right">Retour</a></h6>
             </div>
             <div class="card-body">
-                <!-- Form for users adding -->
                 <form action="../../config/form.php" method="POST">
-                    <!-- <input type="hidden" name="id" value="" id="userID"/> -->
                     <div class="row">
                         <div class="col-md-4 col-xs-12">
                             <label for="nom">Nom</label><br/>
@@ -43,7 +40,7 @@
                             <input type="text" class="form-control" name="address" placeholder="Saisir la ville" required /><br/>
                         </div>
                         <div class="col-md-4 col-xs-12">
-                            <label for="adresse">Rôle</label><br/>
+                            <label for="role">Rôle</label><br/>
                             <select name="role" id="" class="form-control">
                                 <option>Affecter un rôle</option>
                                 <option value="admin">Administrateur</option>

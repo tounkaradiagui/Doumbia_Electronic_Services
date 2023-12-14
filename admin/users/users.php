@@ -24,44 +24,46 @@
                                 <th>Email</th>
                                 <th>Phone</th>
                                 <th>Adresse</th>
-                                <th>Actions</th>
+                                <th>Rôle</th>
+                                <th>Staus</th>
+                                <th colspan="2" >Actions</th>
                             </tr>
+                            
                         </thead>
-                        <tfoot>
-                            <tr>
-                                <th>Name</th>
-                                <th>Position</th>
-                                <th>Office</th>
-                                <th>Age</th>
-                                <th>Start date</th>
-                                <th>Salary</th>
-                            </tr>
-                        </tfoot>
+                        
                         <tbody>
-                            <tr>
-                                <td>Donna Snider</td>
-                                <td>Customer Support</td>
-                                <td>New York</td>
-                                <td>27</td>
-                                <td>2011/01/25</td>
-                                <td>$112,000</td>
-                            </tr>
-                            <tr>
-                                <td>Diagui Snider</td>
-                                <td>Customer Support</td>
-                                <td>New York</td>
-                                <td>27</td>
-                                <td>2011/01/25</td>
-                                <td>$112,000</td>
-                            </tr>
-                            <tr>
-                                <td>Donna Snider</td>
-                                <td>Customer Support</td>
-                                <td>New York</td>
-                                <td>27</td>
-                                <td>2011/01/25</td>
-                                <td>$112,000</td>
-                            </tr>
+                            <?php
+                                $query = getData('users');
+                                if(mysqli_num_rows($query) > 0)
+                                {
+                                    foreach ($query as $user) {
+                                        ?>
+                                            <tr>
+                                                <td> <?= $user['nom']?> </td>
+                                                <td> <?= $user['prenom']?> </td>
+                                                <td> <?= $user['email']?> </td>
+                                                <td> <?= $user['phone']?> </td>
+                                                <td> <?= $user['address']?> </td>
+                                                <td> <span class="fas fa-badge-danger"><?= $user['role']?></span></td>
+                                                <td> <?= $user['status']?> </td>
+                                                <td> 
+                                                    <a href="./user-edit.php?id=<?= $user['id']?>" class="btn btn-primary btn-sm" title="Modifier"><i class="fa fa-edit"></i></i></a>
+                                                </td>
+                                                <td> 
+                                                    <a href="./user-delete.php?id=<?= $user['id']?>" onclick="return confirm('Voulez-vous supprimer cet utilisateur ?')" class="btn btn-danger btn-sm" title="Supprimer"><i class="fa fa-trash"></i></i></a>
+                                                </td>
+                                            </tr>
+                                        <?php
+                                    }
+                                }else{
+                                    ?>
+                                        <tr>
+                                            <h4>Aucun enregistrement dispobile </h4>
+                                        </tr>
+                                    <?php
+                                }
+                            ?>
+                                                        
                         </tbody>
                     </table>
                 </div>
