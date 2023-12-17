@@ -1,5 +1,9 @@
-<?php include('./includes/header.php') ?>                    
+<?php 
+    include('../includes/header.php'); 
+    
+?>                    
     <div class="container-fluid">
+        <?php displayMessage(); ?>
         <!-- Page Heading -->
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
@@ -94,5 +98,5 @@
 
         <!-- Content Row -->
     </div>
-<?php include('./includes/footer.php')?>                    
+<?php include('../includes/footer.php')?>                    
                 

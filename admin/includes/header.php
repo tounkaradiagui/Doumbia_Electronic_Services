@@ -1,4 +1,7 @@
-<?php require '../../config/function.php' ?>
+<?php 
+    require '../../config/function.php' ;
+    include '../dashboard/auth.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 

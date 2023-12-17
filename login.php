@@ -1,15 +1,23 @@
-<?php $title = "Connexion";
-include('./inc/header.php') ?>
+<?php 
+    $title = "Connexion"; 
+    include('./inc/header.php');
+    
+    if(isset($_SESSION['auth'])){
+        redirect('./index.php', "Vous êtes déjà connecté !");
+    }
+?>
 <section class="bg-dark position-relative min-vh-10 overflow-hidden mb-4" data-bs-theme="dark">
 
 </section>
 <div class="d-lg-flex position-relative h-100">
     <!-- Sign in form -->
+    
     <div class="d-flex flex-column align-items-center w-lg-50 h-100 px-3 px-lg-5 pt-5">
         <div class="w-100 mt-auto" style="max-width: 526px;">
             <h1>Connectez - vous</h1>
+            <?php displayMessage(); ?>
             <p class="pb-3 mb-3 mb-lg-4">Vous n'avez pas de compte ?&nbsp;&nbsp;<a href="./register.php">S'inscrire !</a></p>
-            <form class="needs-validation" novalidate>
+            <form action="./config/auth-form.php" method="POST" class="needs-validation" novalidate>
                 <div class="pb-3 mb-3">
                     <div class="position-relative">
                         <i class="ai-mail fs-lg position-absolute top-50 start-0 translate-middle-y ms-3"></i>
@@ -34,7 +42,7 @@ include('./inc/header.php') ?>
                     </div>
                     <a class="fs-sm fw-semibold text-decoration-none my-1" href="forgot-password.php">Mot de passe oublié ?</a>
                 </div>
-                <button class="btn btn-lg btn-primary w-100 mb-4" type="submit">Connexion</button>
+                <button class="btn btn-lg btn-primary w-100 mb-4" name="login" type="submit">Connexion</button>
 
                 <!-- Sign in with social account -->
                 <h2 class="h6 text-center pt-3 pt-lg-4 mb-4">Ou se connecter un compte google</h2>

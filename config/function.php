@@ -3,7 +3,7 @@
 session_start();
 
 // Include database connection file
-include("dbconnection.php");
+require "dbconnection.php";
 
 /**
  * Validate the input data by escaping special characters and trimming the whitespace
@@ -41,7 +41,7 @@ function displayMessage()
     if (isset($_SESSION['message'])) {
         echo
         '<div class="alert alert-success">
-            <h4>' . $_SESSION['message'] . '</h4>
+            <h6>' . $_SESSION['message'] . '</h6>
         </div>';
        
         unset($_SESSION['message']);
@@ -142,4 +142,11 @@ function deleteFn($userId, $tableName)
     //Execute query
     $deleteResponse = mysqli_query($connection,$query);
     return $deleteResponse;
+}
+
+function logoutSession()
+{
+    unset($_SESSION['auth']);
+    unset($_SESSION['userType']);
+    unset($_SESSION['auth-user']);
 }
