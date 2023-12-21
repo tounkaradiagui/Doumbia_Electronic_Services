@@ -147,6 +147,6 @@ function deleteFn($userId, $tableName)
 function logoutSession()
 {
     unset($_SESSION['auth']);
-    unset($_SESSION['userType']);
-    unset($_SESSION['auth-user']);
+    unset($_SESSION['loggedInUserRole']);
+    unset($_SESSION['loggedInUser']);
 }

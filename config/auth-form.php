@@ -16,35 +16,38 @@ if(isset($_POST['login'])){
 
         if(mysqli_num_rows($result) == 1){
 
-            $row = mysqli_fetch_assoc($result);
+            $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
 
             if($row['role'] == 'admin'){
 
-                redirect('../admin/dashboard/index.php', "Bienvenue sur votre Tableau de Bord");
+                
+                if($row['status'] == 'inactive'){
+                        redirect("../login.php","Votre compte a été banni. Veuillez contacter l'administrateur.");
+                    }
+                    
+                    $_SESSION['auth'] = true;
+                    $_SESSION['loggedInUserRole'] = $row['role'];
+                    $_SESSION['loggedInUser'] = [
+                        'name' => $row['name'],
+                        'email' => $row['email']
+                    ];
+
+                    redirect('../admin/dashboard/index.php', "Bienvenue sur votre Tableau de Bord");
+                
+            }else{
                 
                 if($row['status'] == 'inactive'){
                     redirect("../login.php","Votre compte a été banni. Veuillez contacter l'administrateur.");
                 }
 
                 $_SESSION['auth'] = true;
-                $_SESSION['userType'] = $row['role'];
-                $_SESSION['auth-user'] = [
-                    'id' => $row['id'],
+                $_SESSION['loggedInUserRole'] = $row['role'];
+                $_SESSION['loggedInUser'] = [
                     'name' => $row['name'],
                     'email' => $row['email']
                 ];
                 
-            }else{
-
                 redirect('../index.php', "Bienvenue sur Doumbia Electronic");
-                
-                $_SESSION['auth'] = true;
-                $_SESSION['userType'] = $row['role'];
-                $_SESSION['auth-user'] = [
-                    'id' => $row['id'],
-                    'name' => $row['name'],
-                    'email' => $row['email']
-                ];
             }
         }else{
             redirect("../login.php","L'adresse e-mail ou le mot de passe est incorrect.");

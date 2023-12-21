@@ -19,6 +19,7 @@ include('./inc/header.php') ?>
     <a class="scroll-down-btn" href="#landings" data-scroll data-scroll-offset="20">
       <div class="mouse"></div>
       <p>Landings</p>
+      <?php displayMessage(); ?>
     </a>
   </div>
   <div class="d-none d-lg-block" style="margin-top: -80px;"></div>

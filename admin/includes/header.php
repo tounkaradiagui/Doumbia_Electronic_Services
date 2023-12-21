@@ -1,6 +1,6 @@
 <?php 
     require '../../config/function.php' ;
-    include '../dashboard/auth.php';
+    include '../dashboard/check-auth.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
