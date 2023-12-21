@@ -72,3 +72,81 @@ if (isset($_POST['update'])) {
         redirect("../admin/users/create-users.php", "Erreur de mise à jour, veuillez réessayer");
     }
 }
+
+if(isset($_POST['settings'])){
+    // echo "Param";
+
+    // get the input data from the form
+    $title = validate($_POST['title']);
+    $slug = validate($_POST['slug']);
+    $small_description = validate($_POST['small_description']);
+    $description = validate($_POST['description']);
+
+    $meta_title = validate($_POST['meta_title']);
+    $meta_keyword = validate($_POST['meta_keyword']);
+    $meta_description = validate($_POST['meta_description']);
+    
+    $address = validate($_POST['address']);
+    $phone = validate($_POST['phone']);
+    $email = validate($_POST['email']);
+    
+    $settingId = validate($_POST['settingsId']);
+
+    if($settingId == 'insertData'){
+        $insert = "INSERT INTO settings (
+                            `title`, 
+                            `slug`, 
+                            `small_description`, 
+                            `description`, 
+                            `meta_title`, 
+                            `meta_keyword`, 
+                            `meta_description`, 
+                            `address`, 
+                            `phone`, 
+                            `email`
+                        )
+                    VALUE (
+                        '$title',
+                        '$slug',
+                        '$small_description',
+                        '$description',
+                        '$meta_title',
+                        '$meta_keyword',
+                        '$meta_description',
+                        '$address',
+                        '$phone',
+                        '$email'
+                    )";
+        $result = mysqli_query($connection, $insert);
+    }
+
+    if(is_numeric($settingId)){
+        $query = "UPDATE settings 
+                SET 
+                    title ='$title',
+                    slug ='$slug',
+                    small_description ='$small_description',
+                    description ='$description',
+                    meta_title ='$meta_title',
+                    meta_keyword ='$meta_keyword',
+                    meta_description ='$meta_description',
+                    address ='$address',
+                    phone ='$phone',
+                    email ='$email'
+
+                WHERE id = '$settingId'
+                ";
+        $result = mysqli_query($connection, $query);
+    }
+    
+    // Check if the data was inserted successfully
+    if ($result) {
+        // If the data was inserted successfully, redirect to the 'settings.php' page with a success message
+        redirect("../admin/pages/settings.php", "Félicitations ! Les informations du site ont été mise à jour avec succes.");
+    } else {
+        // If there was an error, redirect to the 'settings.php' page with an error message
+        redirect("../admin/pages/settings.php", "Erreur d'enregistrement, veuillez réessayer");
+    }
+
+
+}

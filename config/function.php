@@ -132,6 +132,41 @@ function getUserById($id, $table)
         return $response;
     }
 }
+function getDataById($id, $table)
+{
+    global $connection;
+    $validateTable = validate($table);
+    $validateId = validate($id);
+
+    $query = "SELECT * FROM $validateTable WHERE id = '$validateId' LIMIT 1";
+    $result = mysqli_query($connection, $query);
+   
+    if($result){
+        if(mysqli_num_rows($result) == 1){
+            $row = mysqli_fetch_assoc($result);
+            $response = [
+                'status'=> 200,
+                'message'=> "Successfully fetched",
+                'data' => $row
+            ];
+            return $response;
+        }else{
+
+            $response = [
+                'status'=> 500,
+                'error'=>mysqli_error($connection),
+            ];
+            return $response;
+        }
+       
+    }else{
+        $response = [
+            'status'=> 500,
+            'error'=>mysqli_error($connection),
+        ];
+        return $response;
+    }
+}
 
 function deleteFn($userId, $tableName)
 {

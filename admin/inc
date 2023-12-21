@@ -1,6 +1,0 @@
-                    <?php
-                        $id = $_GET['id'];
-                        $edit =  "SELECT * FROM users WHERE id = $id";
-                        $result = mysqli_query($connection, $edit);
-                        while($user = mysqli_fetch_array($result));                       
-                    ?>
