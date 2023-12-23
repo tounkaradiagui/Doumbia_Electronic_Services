@@ -70,6 +70,21 @@ function checkUserId($userId)
     }
 }
 
+function checkId($msId)
+{
+    if(isset($_GET[$msId])){
+        // echo "ok";
+        if($_GET[$msId] !== null){
+            return $_GET[$msId];
+        }else{
+
+            return "Id est introuvable";
+        }
+    }else{
+        return "Id est introuvable";
+    }
+}
+
 /**
  * Get all data from the specified table
  * 

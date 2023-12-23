@@ -93,7 +93,7 @@
 
     <!-- Nav Item - Tables -->
     <li class="nav-item">
-        <a class="nav-link" href="tables.html">
+        <a class="nav-link" href="../pages/lists-social-media.php">
             <i class="fas fa-fw fa-link"></i>
             <span>Réseaux sociaux</span></a>
     </li>
