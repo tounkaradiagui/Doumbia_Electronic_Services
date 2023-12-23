@@ -50,7 +50,7 @@ include('./inc/header.php') ?>
                 <button class="btn btn-lg btn-primary w-100 mb-4" type="submit">Poursuivre</button>
 
                 <h2 class="h6 text-center pt-3 pt-lg-4 mb-4">Ou s'inscrire avec google</h2>
-                <div class="row row-cols-1 row-cols-sm-2 gy-3">
+                <div class="row row-cols-1 row-cols-sm-2 gy-3 mb-4">
                     <div class="col-md-12">
                         <a class="btn btn-icon btn-outline-secondary btn-google btn-lg w-100" href="#">
                             <i class="ai-google fs-xl me-2"></i>

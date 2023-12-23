@@ -1,4 +1,4 @@
-<?php require('./config/function.php'); ?>
+<?php require('./config/function.php');?>
 <!DOCTYPE html>
 <html lang="en" data-bs-theme="light">
 
@@ -13,14 +13,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover">
 
   <!-- SEO meta tags -->
-  <title> <?php if (isset($title)) {
-            echo $title;
-          } else {
-            echo "Doumbia Electronic";
-          } ?> </title>
-  <meta name="description" content="Around - Multipurpose Bootstrap HTML Template">
-  <meta name="keywords" content="bootstrap, business, corporate, coworking space, services, creative agency, dashboard, e-commerce, mobile app showcase, saas, multipurpose, product landing, shop, software, ui kit, web studio, landing, light and dark mode, html5, css3, javascript, gallery, slider, touch, creative">
-  <meta name="author" content="Createx Studio">
+  <title> <?php if (isset($title)) {echo $title;} else {echo siteConfig('title') ?? "Doumbia Electronic";} ?> </title>
+  <meta name="description" content="<?= siteConfig('description') ?? "Meta description"; ?>">
+  <meta name="keywords" content="<?= siteConfig('meta_keyword') ?? "Meta Keyword"; ?>">
+  <meta name="author" content="Diagui TOUNKARA">
 
   <!-- Webmanifest + Favicon / App icons -->
   <link rel="manifest" href="manifest.json">

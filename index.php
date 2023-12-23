@@ -1,5 +1,4 @@
-<?php $title = "Bienvenue sur Doumbia Electro";
-include('./inc/header.php') ?>
+<?php include('./inc/header.php') ?>
 
 <!-- Hero -->
 <section class="bg-dark position-relative min-vh-100 overflow-hidden pt-5" data-bs-theme="dark">
@@ -38,6 +37,7 @@ include('./inc/header.php') ?>
       <img src="./config/assets/img/landing/intro/hero/04.png" alt="Foreground shape">
     </div>
   </div>
+  
 </section>
 
 <!-- Light / Dark mode (Comparison slider) -->
@@ -45,6 +45,9 @@ include('./inc/header.php') ?>
 
   <div class="position-absolute top-0 start-0 w-50 h-100 bg-dark"></div>
   <div class="position-absolute top-0 end-0 w-50 h-100" style="background-color: #f6f9fc;"></div>
+
+  
 </section>
+
 
 <?php include('./inc/footer.php') ?>

@@ -185,3 +185,11 @@ function logoutSession()
     unset($_SESSION['loggedInUserRole']);
     unset($_SESSION['loggedInUser']);
 }
+
+function siteConfig($column)
+{
+    $setting = getDataById(1, 'settings');
+    if($setting['status'] == 200){
+        return $setting['data'][$column];
+    }
+}

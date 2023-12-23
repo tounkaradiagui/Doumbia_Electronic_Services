@@ -1,5 +1,5 @@
 <?php
-require "function.php";
+require "./function.php";
 
 if(isset($_POST['login'])){
     // echo "logged in";
@@ -22,17 +22,17 @@ if(isset($_POST['login'])){
 
                 
                 if($row['status'] == 'inactive'){
-                        redirect("../login.php","Votre compte a été banni. Veuillez contacter l'administrateur.");
-                    }
+                    redirect("../login.php","Votre compte a été banni. Veuillez contacter l'administrateur.");
+                }
                     
-                    $_SESSION['auth'] = true;
-                    $_SESSION['loggedInUserRole'] = $row['role'];
-                    $_SESSION['loggedInUser'] = [
-                        'name' => $row['name'],
-                        'email' => $row['email']
-                    ];
+                $_SESSION['auth'] = true;
+                $_SESSION['loggedInUserRole'] = $row['role'];
+                $_SESSION['loggedInUser'] = [
+                    'name' => $row['name'],
+                    'email' => $row['email']
+                ];
 
-                    redirect('../admin/dashboard/index.php', "Bienvenue sur votre Tableau de Bord");
+                redirect('../admin/dashboard/index.php', "Bienvenue sur votre Tableau de Bord");
                 
             }else{
                 
