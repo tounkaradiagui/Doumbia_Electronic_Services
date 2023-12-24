@@ -101,12 +101,12 @@ if (isset($_POST['settings'])) {
 
         $stmt = mysqli_prepare($connection, $insert);
 
-        if($stmt){
+        if ($stmt) {
 
             mysqli_stmt_bind_param($stmt, "sssssssi", $title, $slug, $small_description, $description, $meta_title, $meta_keyword, $meta_description, $address, $phone, $email);
-    
+
             $settingResult = mysqli_stmt_execute($stmt);
-    
+
             // Check if the data was inserted successfully
             if ($settingResult) {
                 // If the data was inserted successfully, redirect to the 'settings.php' page with a success message
@@ -117,11 +117,9 @@ if (isset($_POST['settings'])) {
             }
 
             mysqli_stmt_close($stmt);
-
-        }else{
+        } else {
             echo "Erreur de préparation de la requête : " . mysqli_error($connection);
         }
-
     }
 
     if (is_numeric($settingId)) {
@@ -221,14 +219,22 @@ if (isset($_POST['createClient'])) {
     $address = validate($_POST['address']);
 
     $query = "INSERT INTO clients (`nom`, `prenom`, `email`, `phone`, `address`) 
-                VALUES ('$nom', '$prenom', '$email', '$phone', '$address')";
+                VALUES (?, ?, ?, ?, ?)";
 
-    $result = mysqli_query($connection, $query);
+    $stmt = mysqli_prepare($connection, $query);
+    if ($stmt) {
+        mysqli_stmt_bind_param($stmt, "ssssi", $nom, $prenom, $email, $phone, $address);
+        $result = mysqli_stmt_execute($stmt);
 
-    if ($result) {
-        redirect("../admin/clients/lists-client.php", "Félicitations ! Le a été ajouté avec succes.");
+        if ($result) {
+            redirect("../admin/clients/lists-client.php", "Félicitations ! Le client a été ajouté avec succes.");
+        } else {
+            redirect("../admin/clients/create-client.php", "Erreur d'enregistrement, veuillez réessayer");
+        }
+
+        mysqli_stmt_close($stmt);
     } else {
-        redirect("../admin/clients/create-client.php", "Erreur d'enregistrement, veuillez réessayer");
+        echo "Erreur de préparation de la requête : " . mysqli_error($connection);
     }
 }
 
@@ -279,7 +285,6 @@ if (isset($_POST['createRepair'])) {
     $date_reparation = validate($_POST['date_reparation']);
     $description_probleme = validate($_POST['description_probleme']);
 
-
     $directory = __DIR__ . '/images';
 
     if (!is_dir($directory)) {
@@ -301,17 +306,21 @@ if (isset($_POST['createRepair'])) {
     VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
     $stmt = mysqli_prepare($connection, $inserRepairData);
+    if ($stmt) {
 
-    mysqli_stmt_bind_param($stmt, "sssssssi", $title, $type_dispositif, $date_reparation, $description_probleme, $image, $cout_estime, $statut_reparation, $client_id);
+        mysqli_stmt_bind_param($stmt, "sssssssi", $title, $type_dispositif, $date_reparation, $description_probleme, $image, $cout_estime, $statut_reparation, $client_id);
 
-    $repairResult = mysqli_stmt_execute($stmt);
-    mysqli_stmt_close($stmt);
+        $repairResult = mysqli_stmt_execute($stmt);
 
+        if ($repairResult) {
+            redirect("../admin/repairs/lists-repair.php", "Félicitation ! La réparation a été ajoutée.");
+        } else {
+            redirect("../admin/repairs/create-repair.php", "Erreur d'insertion ! Veuillez reéssayer");
+        }
 
-    if ($repairResult) {
-        redirect("../admin/repairs/lists-repair.php", "Félicitation ! La réparation a été ajoutée.");
+        mysqli_stmt_close($stmt);
     } else {
-        redirect("../admin/repairs/create-repair.php", "Erreur d'insertion ! Veuillez reéssayer");
+        echo "Erreur de préparation de la requête : " . mysqli_error($connection);
     }
 }
 
@@ -359,5 +368,63 @@ if (isset($_POST['updateRepair'])) {
         redirect("../admin/repairs/lists-repair.php", "Félicitation ! La réparation a été mise à jour.");
     } else {
         redirect("../admin/repairs/edit-repair.php?id=$id", "Erreur de mise à jour ! Veuillez réessayer");
+    }
+}
+
+
+if (isset($_POST['createTool'])) {
+    // echo "true";
+
+    // get the input data from the form
+    $numero_serie = validate($_POST['numero_serie']);
+    $modele = validate($_POST['modele']);
+    $reparation_id = validate($_POST['reparation_id']);
+
+    $query = "INSERT INTO equipements (`numero_serie`, `modele`, `reparation_id`) VALUES (?, ?, ?)";
+
+
+    $stmt = mysqli_prepare($connection, $query);
+
+
+    if ($stmt) {
+        mysqli_stmt_bind_param($stmt, 'sss', $numero_serie, $modele, $reparation_id);
+
+        $result = mysqli_stmt_execute($stmt);
+
+        if ($result) {
+            redirect("../admin/tools/lists-tool.php", "Félicitations ! Le matériel a été ajouté avec succes.");
+        } else {
+            redirect("../admin/tolls/create-tool.php", "Erreur d'enregistrement, veuillez réessayer");
+        }
+
+        mysqli_stmt_close($stmt);
+    } else {
+        echo "Erreur de préparation de la requête : " . mysqli_error($connection);
+    }
+}
+
+
+if (isset($_POST['updateTool'])) {
+    $numero_serie = validate($_POST['numero_serie']);
+    $modele = validate($_POST['modele']);
+    $reparation_id = validate($_POST['reparation_id']);
+
+    $toolId = validate($_POST['toolId']);
+
+    $sm = getDataById($toolId, "equipements");
+
+    if ($sm['status'] != 200) {
+        redirect("../admin/tools/edit-tool.php?id=" . $toolId, "Erreur de modification, veuillez réessayer");
+    }
+
+    $query = "UPDATE equipements SET numero_serie = '$numero_serie', modele = '$modele', reparation_id = '$reparation_id'
+            WHERE id = '$toolId' ";
+
+    $result = mysqli_query($connection, $query);
+
+    if ($result) {
+        redirect("../admin/tools/lists-tool.php", "Félicitations ! Infos mise à jour avec succes.");
+    } else {
+        redirect("../admin/tools/lists-tool.php", "Erreur de mise à jour, veuillez réessayer");
     }
 }

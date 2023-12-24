@@ -252,7 +252,6 @@ function getClientDataById($tableName, $client_id) {
     }
 }
 
-
 function getClientName($client_id)
 {
     $clientData = getClientDataById('clients', $client_id);
@@ -262,4 +261,29 @@ function getClientName($client_id)
     } else {
         return 'Client inconnu';
     }
+}
+
+function getToolsName($tableName)
+{
+    global $connection;
+
+    $query = "SELECT id, title FROM $tableName";
+    $result = mysqli_query($connection, $query);
+
+    if ($result) {
+        $tools = mysqli_fetch_all($result, MYSQLI_ASSOC);
+        return $tools;
+    } else {
+        return false;
+    }
+}
+
+function getToolTitle($reparationId) {
+    $tools = getToolsName('reparations');
+    foreach ($tools as $tool) {
+        if ($tool['id'] == $reparationId) {
+            return $tool['title'];
+        }
+    }
+    return "Titre non trouvé";
 }

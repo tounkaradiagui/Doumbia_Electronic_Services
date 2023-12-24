@@ -32,7 +32,7 @@
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseClient"
             aria-expanded="true" aria-controls="collapseClient">
-            <i class="fas fa-fw fa-list"></i>
+            <i class="fas fa-fw fa-users"></i>
             <span>Clients</span>
         </a>
         <div id="collapseClient" class="collapse" aria-labelledby="headingClient" data-parent="#accordionSidebar">
@@ -60,6 +60,23 @@
         </div>
     </li>
 
+    <!-- Materials section -->
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
+            aria-expanded="true" aria-controls="collapseUtilities">
+            <i class="fas fa-fw fa-wrench"></i>
+            <span>Materiels</span>
+        </a>
+        <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+            data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Gestion des appareils :</h6>
+                <a class="collapse-item" href="../tools/lists-tool.php">Liste</a>
+                <a class="collapse-item" href="../tools/create-tool.php">Ajouter<i class="fas fa-utensil-fork    "></i></a>
+            </div>
+        </div>
+    </li>
+
     <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseServices"
@@ -72,23 +89,6 @@
                 <h6 class="collapse-header">Gestion de services:</h6>
                 <a class="collapse-item" href="../pages/create-services.php">Ajouter</a>
                 <a class="collapse-item" href="../pages/services.php">Listes</a>
-            </div>
-        </div>
-    </li>
-
-    <!-- Nav Item - Utilities Collapse Menu -->
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-            aria-expanded="true" aria-controls="collapseUtilities">
-            <i class="fas fa-fw fa-wrench"></i>
-            <span>Enquiries</span>
-        </a>
-        <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
-            data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Gestion de demande clients:</h6>
-                <a class="collapse-item" href="utilities-color.html">Liste</a>
-                <a class="collapse-item" href="utilities-border.html">Ajouter<i class="fas fa-utensil-fork    "></i></a>
             </div>
         </div>
     </li>
