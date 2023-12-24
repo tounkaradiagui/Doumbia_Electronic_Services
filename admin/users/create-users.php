@@ -44,7 +44,7 @@
                             <select name="role" id="" class="form-control">
                                 <option>Affecter un rôle</option>
                                 <option value="admin">Administrateur</option>
-                                <option value="client">Client</option>
+                                <option value="employe">Employer</option>
                             </select>
                         </div>
                     </div>
@@ -63,6 +63,12 @@
                             <select name="status" id="" class="form-control">
                                 <option>Choisir un status</option>
                                 <option value="active">Actif</option>
+                                <option value="inactive">Désactiver</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4 col-xs-12">
+                            <label for="client_id">Client</label><br/>
+                            <select name="client_id" id="" class="form-control">
                                 <option value="inactive">Désactiver</option>
                             </select>
                         </div>

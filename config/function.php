@@ -208,3 +208,58 @@ function siteConfig($column)
         return $setting['data'][$column];
     }
 }
+
+
+function socialMedia($column)
+{
+    $sm = getDataById(1, "social_medias");
+    if($sm['status'] == 200){
+        return $sm['data'][$column];
+    }
+}
+
+function getClientData($data)
+{
+    global $connection;
+    $table = validate($data);
+
+    // Get all users from the database and store them in an array
+    $query = "SELECT id, nom, prenom FROM $table";
+
+    $result = mysqli_query($connection, $query);
+    return $result;
+}
+
+function getClientDataById($tableName, $client_id) {
+    global $connection;
+
+    $query = "SELECT * FROM $tableName WHERE id = ?";
+    $stmt = mysqli_prepare($connection, $query);
+
+    if ($stmt) {
+        mysqli_stmt_bind_param($stmt, "i", $client_id);
+        mysqli_stmt_execute($stmt);
+
+        $result = mysqli_stmt_get_result($stmt);
+        $clientData = mysqli_fetch_assoc($result);
+
+        mysqli_stmt_close($stmt);
+
+        return $clientData;
+    } else {
+        
+        return false;
+    }
+}
+
+
+function getClientName($client_id)
+{
+    $clientData = getClientDataById('clients', $client_id);
+
+    if ($clientData) {
+        return $clientData['nom'] . ' ' . $clientData['prenom'];
+    } else {
+        return 'Client inconnu';
+    }
+}

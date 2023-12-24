@@ -28,14 +28,46 @@
         Interface
     </div>
 
+    <!-- Clients section -->
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseClient"
+            aria-expanded="true" aria-controls="collapseClient">
+            <i class="fas fa-fw fa-list"></i>
+            <span>Clients</span>
+        </a>
+        <div id="collapseClient" class="collapse" aria-labelledby="headingClient" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Gestion de clients:</h6>
+                <a class="collapse-item" href="../clients/create-client.php">Ajouter</a>
+                <a class="collapse-item" href="../clients/lists-client.php">Listes</a>
+            </div>
+        </div>
+    </li>
+
+    <!-- Repairs section -->
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapserepair"
+            aria-expanded="true" aria-controls="collapserepair">
+            <i class="fas fa-fw fa-list"></i>
+            <span>Réparations</span>
+        </a>
+        <div id="collapserepair" class="collapse" aria-labelledby="headingrepair" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Gestion de Réparations:</h6>
+                <a class="collapse-item" href="../repairs/create-repair.php">Ajouter</a>
+                <a class="collapse-item" href="../repairs/lists-repair.php">Listes</a>
+            </div>
+        </div>
+    </li>
+
     <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-            aria-expanded="true" aria-controls="collapseTwo">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseServices"
+            aria-expanded="true" aria-controls="collapseServices">
             <i class="fas fa-fw fa-list"></i>
             <span>Services</span>
         </a>
-        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div id="collapseServices" class="collapse" aria-labelledby="headingServices" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Gestion de services:</h6>
                 <a class="collapse-item" href="../pages/create-services.php">Ajouter</a>

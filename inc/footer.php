@@ -77,9 +77,7 @@
                   <a class="nav-link fw-normal px-0 py-1" href="tel:<?= siteConfig('phone') ?? "Téléphone"; ?>"><?= siteConfig('phone') ?? "Téléphone"; ?></a>
                 </li>
               </ul>
-              <ul class="list-unstyled mb-0 pb-3 pb-md-0">
-                <li class="text-light opacity-90 mb-2">Lundi-Samedi: 8:00 - 21:00</li>
-              </ul>
+              
             </div>
           </div>
           <div class="col-12 col-xl-3 mt-md-2 mt-xl-0 pt-2 pt-md-4 pt-xl-0">
@@ -145,13 +143,13 @@
               <span class="text-light opacity-90"><?= siteConfig('title') ?? "Electronic"; ?></span>
             </a>
             <div class="d-flex mb-4 mb-sm-0">
-              <a class="btn btn-icon btn-sm btn-secondary btn-linkedin rounded-circle mx-2 ms-sm-0 me-sm-3" href="#" aria-label="Linkedin">
+              <a class="btn btn-icon btn-sm btn-secondary btn-linkedin rounded-circle mx-2 ms-sm-0 me-sm-3" href="<?= socialMedia('url') ?? "#"; ?>" aria-label="Linkedin">
                 <i class="ai-linkedin"></i>
               </a>
-              <a class="btn btn-icon btn-sm btn-secondary btn-instagram rounded-circle mx-2 ms-sm-0 me-sm-3" href="#" aria-label="Instagram">
+              <a class="btn btn-icon btn-sm btn-secondary btn-instagram rounded-circle mx-2 ms-sm-0 me-sm-3" href="<?= socialMedia('url') ?? "#"; ?>" aria-label="Instagram">
                 <i class="ai-instagram"></i>
               </a>
-              <a class="btn btn-icon btn-sm btn-secondary btn-facebook rounded-circle mx-2 ms-sm-0 me-sm-3" href="#" aria-label="Facebook">
+              <a class="btn btn-icon btn-sm btn-secondary btn-facebook rounded-circle mx-2 ms-sm-0 me-sm-3" href="<?= socialMedia('url') ?? "#"; ?>" aria-label="Facebook">
                 <i class="ai-facebook"></i>
               </a>
             </div>

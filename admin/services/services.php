@@ -25,7 +25,7 @@
                                 <th>Phone</th>
                                 <th>Adresse</th>
                                 <th>Rôle</th>
-                                <th>Status</th>
+                                <th>Staus</th>
                                 <th colspan="2" >Actions</th>
                             </tr>
                             
@@ -57,10 +57,8 @@
                                     }
                                 }else{
                                     ?>
-                                        <tr >
-                                            <td colspan="8">
-                                                <h4>Aucun enregistrement dispobile </h4>
-                                            </td>
+                                        <tr>
+                                            <h4>Aucun enregistrement dispobile </h4>
                                         </tr>
                                     <?php
                                 }

@@ -49,8 +49,10 @@
                                     }
                                 }else{
                                     ?>
-                                        <tr>
-                                            <h4>Aucun enregistrement dispobile </h4>
+                                        <tr >
+                                            <td colspan="4">
+                                                <h4>Aucun enregistrement dispobile </h4>
+                                            </td>
                                         </tr>
                                     <?php
                                 }

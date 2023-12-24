@@ -2,7 +2,7 @@
 $server = "localhost";
 $username = "root";
 $password = "";
-$db = "electronic";
+$db = "doumbia_electro";
 
 $connection = mysqli_connect($server, $username, $password, $db);
 
