@@ -75,7 +75,7 @@
                                     </div>
                                 </div>
                                 <div class="row mt-4">
-                                    <input type="submit" name="update" class="btn btn-success mt-4" value="Valider"/>
+                                    <input type="submit" name="updateUser" class="btn btn-success mt-4" value="Valider"/>
                                 </div>
                             <?php
                         }else{

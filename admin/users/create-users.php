@@ -73,7 +73,7 @@
                             </select>
                         </div>
                     </div>
-                    <input type="submit" name="create" class="btn btn-primary mt-2" value="Enregistrer"/>
+                    <input type="submit" name="createUser" class="btn btn-primary mt-2" value="Enregistrer"/>
                  
                 </form>
             </div>

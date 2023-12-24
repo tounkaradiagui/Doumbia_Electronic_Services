@@ -4,9 +4,7 @@ require 'dbconnection.php';
 // include functions file
 include 'function.php';
 
-// Check if 'create user' button is clicked
-if (isset($_POST['create'])) {
-    // get the input data from the form
+if (isset($_POST['createUser'])) {
     $nom = validate($_POST['nom']);
     $prenom = validate($_POST['prenom']);
     $email = validate($_POST['email']);
@@ -16,25 +14,30 @@ if (isset($_POST['create'])) {
     $status = validate($_POST['status']);
     $address = validate($_POST['address']);
 
-    // Create SQL query for inserting the data into the 'users' table
     $query = "INSERT INTO users (`nom`, `prenom`, `email`, `password`, `phone`, `role`, `status`, `address`) 
-                VALUES ('$nom', '$prenom', '$email', '$password', '$phone', '$role', '$status', '$address')";
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
-    // Execute the SQL query
-    $result = mysqli_query($connection, $query);
+    $stmt = mysqli_prepare($connection, $query);
 
-    // Check if the data was inserted successfully
-    if ($result) {
-        // If the data was inserted successfully, redirect to the 'users.php' page with a success message
-        redirect("../admin/users/users.php", "Félicitations ! L'utilisateur a été ajouté avec succes.");
+    if ($stmt) {
+        mysqli_stmt_bind_param($stmt, "sssssssi", $nom, $prenom, $email, $password, $phone, $role, $status, $address);
+
+        $creatUserResult = mysqli_stmt_execute($stmt);
+
+        if ($creatUserResult) {
+            redirect("../admin/users/users.php", "Félicitations ! L'utilisateur a été ajouté avec succes.");
+        } else {
+            redirect("../admin/users/create-users.php", "Erreur d'enregistrement, veuillez réessayer");
+        }
+
+        mysqli_stmt_close($stmt);
     } else {
-        // If there was an error, redirect to the 'create-users.php' page with an error message
-        redirect("../admin/users/create-users.php", "Erreur d'enregistrement, veuillez réessayer");
+        echo "Erreur de préparation de la requête : " . mysqli_error($connection);
     }
 }
 
 // Check if the 'update user' button is clicked
-if (isset($_POST['update'])) {
+if (isset($_POST['updateUser'])) {
     // get the input data from the form
     $nom = validate($_POST['nom']);
     $prenom = validate($_POST['prenom']);
@@ -93,31 +96,32 @@ if (isset($_POST['settings'])) {
     $settingId = validate($_POST['settingsId']);
 
     if ($settingId == 'insertData') {
-        $insert = "INSERT INTO settings (
-                            `title`, 
-                            `slug`, 
-                            `small_description`, 
-                            `description`, 
-                            `meta_title`, 
-                            `meta_keyword`, 
-                            `meta_description`, 
-                            `address`, 
-                            `phone`, 
-                            `email`
-                        )
-                    VALUE (
-                        '$title',
-                        '$slug',
-                        '$small_description',
-                        '$description',
-                        '$meta_title',
-                        '$meta_keyword',
-                        '$meta_description',
-                        '$address',
-                        '$phone',
-                        '$email'
-                    )";
-        $result = mysqli_query($connection, $insert);
+        $insert = "INSERT INTO settings (`title`, `slug`, `small_description`, `description`, `meta_title`, `meta_keyword`, `meta_description`, `address`, `phone`, `email`)
+                    VALUE ('?','?','?','?','?','?','?','?','?','?')";
+
+        $stmt = mysqli_prepare($connection, $insert);
+
+        if($stmt){
+
+            mysqli_stmt_bind_param($stmt, "sssssssi", $title, $slug, $small_description, $description, $meta_title, $meta_keyword, $meta_description, $address, $phone, $email);
+    
+            $settingResult = mysqli_stmt_execute($stmt);
+    
+            // Check if the data was inserted successfully
+            if ($settingResult) {
+                // If the data was inserted successfully, redirect to the 'settings.php' page with a success message
+                redirect("../admin/pages/settings.php", "Félicitations ! Les informations du site ont été mise à jour avec succes.");
+            } else {
+                // If there was an error, redirect to the 'settings.php' page with an error message
+                redirect("../admin/pages/settings.php", "Erreur d'enregistrement, veuillez réessayer");
+            }
+
+            mysqli_stmt_close($stmt);
+
+        }else{
+            echo "Erreur de préparation de la requête : " . mysqli_error($connection);
+        }
+
     }
 
     if (is_numeric($settingId)) {
@@ -138,15 +142,6 @@ if (isset($_POST['settings'])) {
                 ";
         $result = mysqli_query($connection, $query);
     }
-
-    // Check if the data was inserted successfully
-    if ($result) {
-        // If the data was inserted successfully, redirect to the 'settings.php' page with a success message
-        redirect("../admin/pages/settings.php", "Félicitations ! Les informations du site ont été mise à jour avec succes.");
-    } else {
-        // If there was an error, redirect to the 'settings.php' page with an error message
-        redirect("../admin/pages/settings.php", "Erreur d'enregistrement, veuillez réessayer");
-    }
 }
 
 // Check if the 'social media' button is clicked
@@ -158,20 +153,26 @@ if (isset($_POST['createSM'])) {
     $url = validate($_POST['url']);
     $status = validate($_POST['status']);
 
-    // Create SQL query for inserting the data into the 'social media' table
-    $query = "INSERT INTO social_medias (`nom`, `url`, `status`) 
-                VALUES ('$nom', '$url', '$status')";
+    $query = "INSERT INTO social_medias (`nom`, `url`, `status`) VALUES (?, ?, ?)";
 
-    // Execute the SQL query
-    $result = mysqli_query($connection, $query);
 
-    // Check if the data was inserted successfully
-    if ($result) {
-        // If the data was inserted successfully, redirect to the 'lists-social-media.php' page with a success message
-        redirect("../admin/pages/lists-social-media.php", "Félicitations ! Le réseau social a été ajouté avec succes.");
+    $stmt = mysqli_prepare($connection, $query);
+
+
+    if ($stmt) {
+        mysqli_stmt_bind_param($stmt, 'sss', $nom, $url, $status);
+
+        $result = mysqli_stmt_execute($stmt);
+
+        if ($result) {
+            redirect("../admin/pages/lists-social-media.php", "Félicitations ! Le réseau social a été ajouté avec succes.");
+        } else {
+            redirect("../admin/users/create-social-media.php", "Erreur d'enregistrement, veuillez réessayer");
+        }
+
+        mysqli_stmt_close($stmt);
     } else {
-        // If there was an error, redirect to the 'create-social-media.php' page with an error message
-        redirect("../admin/users/create-social-media.php", "Erreur d'enregistrement, veuillez réessayer");
+        echo "Erreur de préparation de la requête : " . mysqli_error($connection);
     }
 }
 
@@ -320,7 +321,7 @@ if (isset($_POST['createRepair'])) {
 //             ulter la fiche de cette réparation
 
 
-if(isset($_POST['updateRepair'])){
+if (isset($_POST['updateRepair'])) {
     $id = validate($_POST['id']);
     $title = validate($_POST['title']);
     $type_dispositif = validate($_POST['type_dispositif']);
@@ -354,9 +355,9 @@ if(isset($_POST['updateRepair'])){
 
     $updateResult = mysqli_query($connection, $updateRepairData);
 
-    if($updateResult){
+    if ($updateResult) {
         redirect("../admin/repairs/lists-repair.php", "Félicitation ! La réparation a été mise à jour.");
-    }else{
+    } else {
         redirect("../admin/repairs/edit-repair.php?id=$id", "Erreur de mise à jour ! Veuillez réessayer");
     }
 }
