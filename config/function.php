@@ -289,3 +289,31 @@ function getToolTitle($reparationId)
     }
     return "Titre non trouvé";
 }
+
+// ------------------------------ END BACKEND SIDE ---------------------------- //
+
+function getServicesData($data)
+{
+    global $connection;
+    $table = validate($data);
+
+    // Get all users from the database and store them in an array
+    $query = "SELECT * FROM $table WHERE deleted = 0 AND status = 'visible' ORDER BY updated_at DESC";
+    $result = mysqli_query($connection, $query);
+
+    // Vérifiez si la requête a échoué
+    if (!$result) {
+        echo "Erreur MySQL : " . mysqli_error($connection);
+    }
+    return $result;
+}
+
+function formatDate($dateString) {
+    // Convertir la chaîne de date en objet DateTime
+    $date = new DateTime($dateString);
+
+    // Formater la date selon le style "Lundi le 09 Déc 2023"
+    $formattedDate = $date->format("l d M Y");
+
+    return $formattedDate;
+}

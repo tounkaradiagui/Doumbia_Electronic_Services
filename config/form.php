@@ -139,6 +139,13 @@ if (isset($_POST['settings'])) {
                 WHERE id = '$settingId'
                 ";
         $result = mysqli_query($connection, $query);
+        if ($result) {
+            // If the data was inserted successfully, redirect to the 'settings.php' page with a success message
+            redirect("../admin/pages/settings.php", "Félicitations ! Les informations du site ont été mise à jour avec succes.");
+        } else {
+            // If there was an error, redirect to the 'settings.php' page with an error message
+            redirect("../admin/pages/settings.php", "Erreur d'enregistrement, veuillez réessayer");
+        }
     }
 }
 
