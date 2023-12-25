@@ -42,7 +42,7 @@
                     </div>
                     <div class="col-md-4 col-xs-12">
                         <label for="image">image</label><br />
-                        <input type="file" class="form-control" name="image" required /><br />
+                        <input type="file" class="form-control" accept=".jpg,.png,.jpeg" name="image" required /><br />
                     </div>
                 </div>
 

@@ -12,7 +12,7 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
-                            <th>Réparation</th>
+                            <th>ID Réparation</th>
                             <th>Numéro de série</th>
                             <th>Modèle</th>
                             <th colspan="2">Actions</th>

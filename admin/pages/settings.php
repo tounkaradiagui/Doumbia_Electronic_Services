@@ -34,7 +34,7 @@
                 <div class="row">
                     <div class="col-md-12 col-xs-12">
                         <label for="description">Description</label><br/>
-                        <textarea type="text" class="form-control" name="description" value="" rows="5" placeholder="Saisir une Description" required ><?= $setting['data']['description'] ?? ''; ?></textarea>
+                        <textarea type="text" class="form-control" id="summernote" name="description" value="<?= $setting['data']['description'] ?? ''; ?>" rows="5" placeholder="Saisir une Description" required ><?= $setting['data']['description'] ?? ''; ?></textarea>
                     </div>
                 </div>
 

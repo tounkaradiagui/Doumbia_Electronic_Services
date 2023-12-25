@@ -43,7 +43,7 @@ function displayMessage()
         '<div class="alert alert-success">
             <h6>' . $_SESSION['message'] . '</h6>
         </div>';
-       
+
         unset($_SESSION['message']);
     }
 }
@@ -57,30 +57,30 @@ function displayMessage()
  */
 function checkUserId($userId)
 {
-    if(isset($_GET[$userId])){
+    if (isset($_GET[$userId])) {
         // echo "ok";
-        if($_GET[$userId] !== null){
+        if ($_GET[$userId] !== null) {
             return $_GET[$userId];
-        }else{
+        } else {
 
             return "L'utilisateur est introuvable";
         }
-    }else{
+    } else {
         return "L'utilisateur est introuvable";
     }
 }
 
 function checkId($msId)
 {
-    if(isset($_GET[$msId])){
+    if (isset($_GET[$msId])) {
         // echo "ok";
-        if($_GET[$msId] !== null){
+        if ($_GET[$msId] !== null) {
             return $_GET[$msId];
-        }else{
+        } else {
 
             return "Id est introuvable";
         }
-    }else{
+    } else {
         return "Id est introuvable";
     }
 }
@@ -98,8 +98,7 @@ function getData($data)
     $table = validate($data);
 
     // Get all users from the database and store them in an array
-    $query = "SELECT * FROM $table";
-
+    $query = "SELECT * FROM $table WHERE deleted = 0";
     $result = mysqli_query($connection, $query);
     return $result;
 }
@@ -120,29 +119,28 @@ function getUserById($id, $table)
 
     $query = "SELECT * FROM $validateTable WHERE id = '$validateId' LIMIT 1";
     $result = mysqli_query($connection, $query);
-   
-    if($result){
-        if(mysqli_num_rows($result) == 1){
+
+    if ($result) {
+        if (mysqli_num_rows($result) == 1) {
             $row = mysqli_fetch_assoc($result);
             $response = [
-                'status'=> 200,
-                'message'=> "Successfully fetched",
+                'status' => 200,
+                'message' => "Successfully fetched",
                 'data' => $row
             ];
             return $response;
-        }else{
+        } else {
 
             $response = [
-                'status'=> 500,
-                'error'=>mysqli_error($connection),
+                'status' => 500,
+                'error' => mysqli_error($connection),
             ];
             return $response;
         }
-       
-    }else{
+    } else {
         $response = [
-            'status'=> 500,
-            'error'=>mysqli_error($connection),
+            'status' => 500,
+            'error' => mysqli_error($connection),
         ];
         return $response;
     }
@@ -155,29 +153,28 @@ function getDataById($id, $table)
 
     $query = "SELECT * FROM $validateTable WHERE id = '$validateId' LIMIT 1";
     $result = mysqli_query($connection, $query);
-   
-    if($result){
-        if(mysqli_num_rows($result) == 1){
+
+    if ($result) {
+        if (mysqli_num_rows($result) == 1) {
             $row = mysqli_fetch_assoc($result);
             $response = [
-                'status'=> 200,
-                'message'=> "Successfully fetched",
+                'status' => 200,
+                'message' => "Successfully fetched",
                 'data' => $row
             ];
             return $response;
-        }else{
+        } else {
 
             $response = [
-                'status'=> 500,
-                'error'=>mysqli_error($connection),
+                'status' => 500,
+                'error' => mysqli_error($connection),
             ];
             return $response;
         }
-       
-    }else{
+    } else {
         $response = [
-            'status'=> 500,
-            'error'=>mysqli_error($connection),
+            'status' => 500,
+            'error' => mysqli_error($connection),
         ];
         return $response;
     }
@@ -188,9 +185,12 @@ function deleteFn($userId, $tableName)
     global $connection;
     $table = validate($tableName);
     $id = validate($userId);
-    $query = "DELETE FROM $table WHERE id = '$id' LIMIT 1 ";
-    //Execute query
-    $deleteResponse = mysqli_query($connection,$query);
+
+    // Mise à jour de la colonne deleted à 1 pour marquer l'entrée comme "supprimée"
+    $query = "UPDATE $table SET deleted = 1 WHERE id = '$id'";
+    
+    // Execute query
+    $deleteResponse = mysqli_query($connection, $query);
     return $deleteResponse;
 }
 
@@ -204,7 +204,7 @@ function logoutSession()
 function siteConfig($column)
 {
     $setting = getDataById(1, 'settings');
-    if($setting['status'] == 200){
+    if ($setting['status'] == 200) {
         return $setting['data'][$column];
     }
 }
@@ -213,7 +213,7 @@ function siteConfig($column)
 function socialMedia($column)
 {
     $sm = getDataById(1, "social_medias");
-    if($sm['status'] == 200){
+    if ($sm['status'] == 200) {
         return $sm['data'][$column];
     }
 }
@@ -230,7 +230,8 @@ function getClientData($data)
     return $result;
 }
 
-function getClientDataById($tableName, $client_id) {
+function getClientDataById($tableName, $client_id)
+{
     global $connection;
 
     $query = "SELECT * FROM $tableName WHERE id = ?";
@@ -247,7 +248,7 @@ function getClientDataById($tableName, $client_id) {
 
         return $clientData;
     } else {
-        
+
         return false;
     }
 }
@@ -278,11 +279,12 @@ function getToolsName($tableName)
     }
 }
 
-function getToolTitle($reparationId) {
+function getToolTitle($reparationId)
+{
     $tools = getToolsName('reparations');
     foreach ($tools as $tool) {
         if ($tool['id'] == $reparationId) {
-            return $tool['title'];
+            return $tool['id'];
         }
     }
     return "Titre non trouvé";

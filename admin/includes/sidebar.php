@@ -77,7 +77,7 @@
         </div>
     </li>
 
-    <!-- Nav Item - Pages Collapse Menu -->
+    <!-- Services section -->
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseServices"
             aria-expanded="true" aria-controls="collapseServices">
@@ -87,8 +87,8 @@
         <div id="collapseServices" class="collapse" aria-labelledby="headingServices" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Gestion de services:</h6>
-                <a class="collapse-item" href="../pages/create-services.php">Ajouter</a>
-                <a class="collapse-item" href="../pages/services.php">Listes</a>
+                <a class="collapse-item" href="../services/create-services.php">Ajouter</a>
+                <a class="collapse-item" href="../services/services.php">Listes</a>
             </div>
         </div>
     </li>

@@ -428,3 +428,84 @@ if (isset($_POST['updateTool'])) {
         redirect("../admin/tools/lists-tool.php", "Erreur de mise à jour, veuillez réessayer");
     }
 }
+
+if (isset($_POST['createServices'])) {
+    // echo "Param";
+    $title = validate($_POST['title']);
+    $slug = validate($_POST['slug']);
+
+    // Gestion du téléchargement de l'image
+    $image = validate($_FILES['image']['name']);
+    $imagePath = __DIR__ . '/images/' . $image;
+    move_uploaded_file($_FILES['image']['tmp_name'], $imagePath);
+
+    $description = validate($_POST['description']);
+
+    $meta_title = validate($_POST['meta_title']);
+    $meta_keyword = validate($_POST['meta_keyword']);
+    $meta_description = validate($_POST['meta_description']);
+
+    $status = validate($_POST['status']);
+
+    $insert = "INSERT INTO activites (`title`, `slug`, `image`, `description`, `meta_title`, `meta_keyword`, `meta_description`, `status`)
+                    VALUE ( ? , ? , ? , ? , ? , ? , ? , ?)";
+
+    $stmt = mysqli_prepare($connection, $insert);
+
+    if ($stmt) {
+
+        mysqli_stmt_bind_param($stmt, "sssssssi", $title, $slug, $image, $description, $meta_title, $meta_keyword, $meta_description, $status);
+
+        $result = mysqli_stmt_execute($stmt);
+
+        if ($result) {
+            redirect("../admin/services/services.php", "Félicitations ! Le nouveau service été ajouté avec succes.");
+        } else {
+            redirect("../admin/services/services.php", "Erreur d'enregistrement, veuillez réessayer");
+        }
+
+        mysqli_stmt_close($stmt);
+    } else {
+        echo "Erreur de préparation de la requête : " . mysqli_error($connection);
+    }
+}
+
+
+if (isset($_POST['updateServices'])) {
+    $title = validate($_POST['title']);
+    $slug = validate($_POST['slug']);
+
+    // Gestion du téléchargement de l'image
+    $image = validate($_FILES['image']['name']);
+    $imagePath = __DIR__ . '/images/' . $image;
+    move_uploaded_file($_FILES['image']['tmp_name'], $imagePath);
+
+    $description = validate($_POST['description']);
+
+    $meta_title = validate($_POST['meta_title']);
+    $meta_keyword = validate($_POST['meta_keyword']);
+    $meta_description = validate($_POST['meta_description']);
+    $status = validate($_POST['status']);
+
+    $serviceId = validate($_POST['serviceId']);
+    $service = getDataById($serviceId, "activites");
+    // Vérification si une nouvelle image a été ajoutée ou pas
+
+    if ($service['status'] != 200) {
+        redirect("../admin/services/edit-service.php?id=".$serviceId, "Erreur de modification, veuillez réessayer");
+    }
+
+    $updateData = "UPDATE activites SET title = '$title', slug = '$slug', image = '$image', description = '$description',
+     meta_title = '$meta_title', meta_keyword = '$meta_keyword', meta_description = '$meta_description',
+      status = '$status' WHERE id = '$serviceId' ";
+
+    $updateResult = mysqli_query($connection, $updateData);
+
+    if ($updateResult) {
+        redirect("../admin/services/services.php", "Félicitations ! Le service a été mis à jour avec succès.");
+    } else {
+        redirect("../admin/services/services.php", "Erreur ! Erreur de modification.");
+    }
+
+}
+

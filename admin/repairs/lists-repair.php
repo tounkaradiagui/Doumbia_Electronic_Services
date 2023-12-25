@@ -12,6 +12,7 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
+                            <th>ID</th>
                             <th>Titre</th>
                             <th>Type de dispositif</th>
                             <th>Date de réparation</th>
@@ -30,6 +31,7 @@
                             foreach ($query as $repair) {
                         ?>
                                 <tr>
+                                    <td> <?= $repair['id'] ?> </td>
                                     <td> <?= $repair['title'] ?> </td>
                                     <td> <?= $repair['type_dispositif'] ?> </td>
                                     <td> <?= $repair['date_reparation'] ?> </td>

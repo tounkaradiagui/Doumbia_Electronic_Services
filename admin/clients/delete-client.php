@@ -7,9 +7,9 @@ if(is_numeric($deleteResult)){
     $id = validate($deleteResult);
     $client = getDataById($id, "clients");
     if($client['status'] == 200){
-        $deleteUser = deleteFn($id, "clients");
-        if($deleteUser){
-            redirect('./lists-client.php', "Le a été supprimée avec succès");
+        $deleteClient = deleteFn($id, "clients");
+        if($deleteClient){
+            redirect('./lists-client.php', "Le client a été supprimée avec succès");
         }else{
             redirect('./lists-client.php', "Erreur de suppression, Veuillez réessayer !");
         }
