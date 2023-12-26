@@ -7,7 +7,7 @@
         <!-- Columns with links -->
         <div class="row" id="links">
           <div class="col-md-3 col-xl-2 pb-2 pb-md-0">
-            <h3 class="h6 text-uppercase d-none d-md-block">Lien utils</h3>
+            <h3 class="h6 text-uppercase d-none d-md-block">Liens utils</h3>
             <a class="btn-more h6 mb-1 text-uppercase text-decoration-none d-flex align-items-center collapsed d-md-none" href="#useful" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="useful" data-show-label="Useful links" data-hide-label="Useful links" aria-label="Useful links"></a>
             <div class="collapse d-md-block" id="useful" data-bs-parent="#links">
               <ul class="nav flex-column pb-2 pb-md-0">
