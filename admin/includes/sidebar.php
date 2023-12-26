@@ -12,7 +12,7 @@
     <!-- Divider -->
     <hr class="sidebar-divider my-0">
 
-    <!-- Nav Item - Dashboard -->
+    <!-- Dashboard -->
     <li class="nav-item active">
         <a class="nav-link" href="../dashboard/index.php">
             <i class="fas fa-fw fa-tachometer-alt"></i>
@@ -30,8 +30,7 @@
 
     <!-- Clients section -->
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseClient"
-            aria-expanded="true" aria-controls="collapseClient">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseClient" aria-expanded="true" aria-controls="collapseClient">
             <i class="fas fa-fw fa-users"></i>
             <span>Clients</span>
         </a>
@@ -46,8 +45,7 @@
 
     <!-- Repairs section -->
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapserepair"
-            aria-expanded="true" aria-controls="collapserepair">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapserepair" aria-expanded="true" aria-controls="collapserepair">
             <i class="fas fa-fw fa-list"></i>
             <span>Réparations</span>
         </a>
@@ -62,13 +60,11 @@
 
     <!-- Materials section -->
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-            aria-expanded="true" aria-controls="collapseUtilities">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
             <i class="fas fa-fw fa-wrench"></i>
             <span>Materiels</span>
         </a>
-        <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
-            data-parent="#accordionSidebar">
+        <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Gestion des appareils :</h6>
                 <a class="collapse-item" href="../tools/lists-tool.php">Liste</a>
@@ -79,8 +75,7 @@
 
     <!-- Services section -->
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseServices"
-            aria-expanded="true" aria-controls="collapseServices">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseServices" aria-expanded="true" aria-controls="collapseServices">
             <i class="fas fa-fw fa-list"></i>
             <span>Services</span>
         </a>
@@ -101,10 +96,9 @@
         Utilisateurs
     </div>
 
-    <!-- Nav Item - Pages Collapse Menu -->
+    <!-- Users management section -->
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
-            aria-expanded="true" aria-controls="collapsePages">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
             <i class="fas fa-fw fa-folder"></i>
             <span>Gestion des utilisateurs</span>
         </a>
@@ -116,25 +110,44 @@
         </div>
     </li>
 
-    <!-- Nav Item - Charts -->
+    <!-- Contact section-->
+    <li class="nav-item">
+        <a class="nav-link" href="../pages/messages.php">
+            <i class="fas fa-fw fa-envelope"></i>
+            <span>Messages<s></s></span>
+        </a>
+    </li>
+
+    <!-- Enquiries section-->
+    <li class="nav-item">
+        <a class="nav-link" href="../pages/demande.php">
+            <i class="fas fa-fw fa-envelope"></i>
+            <span>Renseignements<s></s></span>
+        </a>
+    </li>
+
+    <!-- Charts section-->
     <li class="nav-item">
         <a class="nav-link" href="charts.html">
             <i class="fas fa-fw fa-chart-area"></i>
-            <span>Statistiques<s></s></span></a>
+            <span>Statistiques<s></s></span>
+        </a>
     </li>
 
-    <!-- Nav Item - Tables -->
+    <!-- Social media section -->
     <li class="nav-item">
         <a class="nav-link" href="../pages/lists-social-media.php">
             <i class="fas fa-fw fa-link"></i>
-            <span>Réseaux sociaux</span></a>
+            <span>Réseaux sociaux</span>
+        </a>
     </li>
 
-    <!-- Nav Item - Tables -->
+    <!-- Settings section -->
     <li class="nav-item">
         <a class="nav-link" href="../pages/settings.php">
-        <i class="fas fa-fw fa-cog"></i>
-            <span>Paramètre</span></a>
+            <i class="fas fa-fw fa-cog"></i>
+            <span>Paramètre</span>
+        </a>
     </li>
 
     <!-- Divider -->

@@ -7,36 +7,36 @@
         <!-- Columns with links -->
         <div class="row" id="links">
           <div class="col-md-3 col-xl-2 pb-2 pb-md-0">
-            <h3 class="h6 text-uppercase d-none d-md-block">Useful links</h3>
+            <h3 class="h6 text-uppercase d-none d-md-block">Lien utils</h3>
             <a class="btn-more h6 mb-1 text-uppercase text-decoration-none d-flex align-items-center collapsed d-md-none" href="#useful" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="useful" data-show-label="Useful links" data-hide-label="Useful links" aria-label="Useful links"></a>
             <div class="collapse d-md-block" id="useful" data-bs-parent="#links">
               <ul class="nav flex-column pb-2 pb-md-0">
                 <li class="nav-item">
-                  <a class="nav-link fw-normal px-0 py-1" href="#">Trending</a>
+                  <a class="nav-link fw-normal px-0 py-1" href="#">Nouveaux</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link fw-normal px-0 py-1" href="#">Sale</a>
+                  <a class="nav-link fw-normal px-0 py-1" href="#">En Tendance</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link fw-normal px-0 py-1" href="#">About us</a>
+                  <a class="nav-link fw-normal px-0 py-1" href="#">Ventes</a>
                 </li>
                 
               </ul>
             </div>
           </div>
           <div class="col-md-3 col-xl-2 pb-2 pb-md-0">
-            <h3 class="h6 text-uppercase d-none d-md-block">Decors</h3>
+            <h3 class="h6 text-uppercase d-none d-md-block">Développeur</h3>
             <a class="btn-more h6 mb-1 text-uppercase text-decoration-none d-flex align-items-center collapsed d-md-none" href="#decors" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="decors" data-show-label="Decors" data-hide-label="Decors" aria-label="Decors"></a>
             <div class="collapse d-md-block" id="decors" data-bs-parent="#links">
               <ul class="nav flex-column pb-2 pb-md-0">
                 <li class="nav-item">
-                  <a class="nav-link fw-normal px-0 py-1" href="#">Vases</a>
+                  <a class="nav-link fw-normal px-0 py-1" href="#">Diagui Tounkara</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link fw-normal px-0 py-1" href="#">Mirrors</a>
+                  <a class="nav-link fw-normal px-0 py-1" href="https://devdiagui.ml">Portfolio</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link fw-normal px-0 py-1" href="#">Paintings</a>
+                  <a class="nav-link fw-normal px-0 py-1" href="https://diagui-shop.com">Site Wweb</a>
                 </li>
                
               </ul>
@@ -48,17 +48,15 @@
             <div class="collapse d-md-block" id="categories" data-bs-parent="#links">
               <ul class="nav flex-column pb-2 pb-md-0">
                 <li class="nav-item">
-                  <a class="nav-link fw-normal px-0 py-1" href="#">Kitchen</a>
+                  <a class="nav-link fw-normal px-0 py-1" href="#">Téléphone</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link fw-normal px-0 py-1" href="#">Bathroom</a>
+                  <a class="nav-link fw-normal px-0 py-1" href="#">Tablette</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link fw-normal px-0 py-1" href="#">Living room</a>
+                  <a class="nav-link fw-normal px-0 py-1" href="#">Ordinateur</a>
                 </li>
-                <li class="nav-item">
-                  <a class="nav-link fw-normal px-0 py-1" href="#">Bedroom</a>
-                </li>
+                
               </ul>
             </div>
           </div>

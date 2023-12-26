@@ -12,14 +12,22 @@
       </div>
     </div>
     <p class="fs-lg pb-3 mb-2 mb-sm-3 mb-lg-4 mx-auto" style="max-width: 640px;">
-    Découvrez une expérience unique où l'innovation rencontre le service exceptionnel.
-     Nous sommes déterminés à vous offrir des solutions remarquables pour simplifier votre vie quotidienne.
+      Découvrez une expérience unique où l'innovation rencontre le service exceptionnel.
+      Nous sommes déterminés à vous offrir des solutions remarquables pour simplifier votre vie quotidienne.
       Bienvenue dans une nouvelle ère d'excellence et de satisfaction client.
-</p>
-    <a class="btn btn-lg btn-primary" href="#services" >Commencer ici !</a>
+    </p>
+    <a class="btn btn-lg btn-primary" href="#services">Commencer ici !</a>
   </div>
 
 </section>
+
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-md-12">
+      <?php displayMessage(); ?>
+    </div>
+  </div>
+</div>
 
 <!-- Features -->
 <section class="container py-5 my-sm-2 my-md-4 my-lg-5" id="services">
@@ -49,7 +57,7 @@
                   </p>
                 </div>
               </div>
-              <a class="btn btn-sm btn-outline-primary mt-auto" href="service-details.php?slug=<?= $visible['slug'];?>">
+              <a class="btn btn-sm btn-outline-primary mt-auto" href="service-details.php?slug=<?= $visible['slug']; ?>">
                 Lire plus...
               </a>
             </div>
@@ -60,15 +68,15 @@
           </div>
         </div>
 
-    <?php
+      <?php
       }
     } else {
-        ?>
-        <div class="col-md-12">
-            <p class="lead text-muted">Aucun services disponible pour le moment.</p>
-        </div>
-        <?php
-        
+      ?>
+      <div class="col-md-12">
+        <p class="lead text-muted">Aucun services disponible pour le moment.</p>
+      </div>
+    <?php
+
     }
     ?>
   </div>

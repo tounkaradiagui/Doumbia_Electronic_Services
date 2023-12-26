@@ -1,8 +1,4 @@
 <?php include('./inc/header.php') ?>
-
-
-
-<!-- Features -->
 <section class="container py-5 my-sm-2 my-md-4 my-lg-5" id="services">
   <div class="row">
     <?php
@@ -28,7 +24,7 @@
                 <h6 class="card-title"><?= $countService['title'] ?></h6>
               </div>
               <?php if (!empty($countService['image'])) : ?>
-                <img src="./config/images/<?= $countService['image'] ?>" class="card-img-top" alt="Image" />
+                <img src="./config/images/<?= $countService['image'] ;?>" class="card-img-top" alt="Image" />
               <?php else : ?>
                 Aucune image
               <?php endif; ?>
@@ -36,7 +32,7 @@
                 <div class="row">
                   <div class="col-md-12">
                     <p class="fs-4 fw-normal lh-base">
-                      <?= $countService['meta_description'] ?>
+                      <?= $countService['meta_description'] ;?>
                     </p>
                   </div>
                 </div>
@@ -55,33 +51,35 @@
               </div>
              
               <div class="card-body flex-grow-1">
-                <div class="row">
-                  <div class="col-md-12 col-xs-12">
-                    <label for="nom">Nom</label><br />
-                    <input type="text" class="form-control" name="nom" placeholder="Saisir votre nom" required /><br />
-                  </div>
-                  <div class="col-md-12 col-xs-12">
-                    <label for="prenom">Prénom</label><br />
-                    <input type="text" class="form-control" name="prenom" placeholder="Prénom" required /><br />
-                  </div>
-                  <div class="col-md-12 col-xs-12">
-                    <label for="type_service">Service</label><br />
-                    <input type="text" class="form-control" name="type_service" value="<?= $countService['title'] ?>" readonly required /><br />
-                  </div>
-                  <div class="col-md-12 col-xs-12">
-                    <label for="phone">Numéro de Téléphone</label><br />
-                    <input type="text" class="form-control" name="phone" placeholder="Votre numéro joignable" required /><br />
-                  </div>
-                  <div class="col-md-12 col-xs-12">
-                    <label for="message">Message</label><br />
-                    <textarea type="text" class="form-control" rows="10" name="message" placeholder="Ecrire votre message ici !" required ></textarea>
-                  </div>
-
-                  <div class="col-md-12 col-xs-12 mt-4">
-                    <input type="submit" value="Envoyer" class="btn btn-primary" name="submitMessage">
-                  </div>
-                  
-                </div>               
+                <form action="./config/form.php" method="POST">
+                  <div class="row">
+                    <div class="col-md-12 col-xs-12">
+                      <label for="nom">Nom</label><br />
+                      <input type="text" class="form-control" name="nom" placeholder="Saisir votre nom" required /><br />
+                    </div>
+                    <div class="col-md-12 col-xs-12">
+                      <label for="prenom">Prénom</label><br />
+                      <input type="text" class="form-control" name="prenom" placeholder="Prénom" required /><br />
+                    </div>
+                    <div class="col-md-12 col-xs-12">
+                      <label for="service_type">Service</label><br />
+                      <input type="text" class="form-control" name="service_type" value="<?= $countService['title'] ?>" readonly required /><br />
+                    </div>
+                    <div class="col-md-12 col-xs-12">
+                      <label for="phone">Numéro de Téléphone</label><br />
+                      <input type="text" class="form-control" name="phone" placeholder="Votre numéro joignable" required /><br />
+                    </div>
+                    <div class="col-md-12 col-xs-12">
+                      <label for="message">Message</label><br />
+                      <textarea type="text" class="form-control" rows="10" name="message" placeholder="Ecrire votre message ici !" required ></textarea>
+                    </div>
+  
+                    <div class="col-md-12 col-xs-12 mt-4">
+                      <input type="submit" value="Envoyer" class="btn btn-primary" name="submitMessage">
+                    </div>
+                    
+                  </div>               
+                </form>
 
               </div>
             </div>

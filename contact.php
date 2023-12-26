@@ -116,23 +116,23 @@ include('./inc/header.php') ?>
                 <div class="row g-4">
                     <div class="col-sm-6">
                         <label class="form-label fs-base" for="nom">Nom</label>
-                        <input class="form-control form-control-lg" type="text" placeholder="Votre nom" required id="nom">
+                        <input class="form-control form-control-lg" type="text" placeholder="Votre nom" required name="nom">
                     </div>
                     <div class="col-sm-6">
                         <label class="form-label fs-base" for="prenom">Prenom</label>
-                        <input class="form-control form-control-lg" type="text" placeholder="Prenom" id="prenom">
+                        <input class="form-control form-control-lg" type="text" placeholder="Prenom" name="prenom">
                     </div>
                     <div class="col-sm-6">
                         <label class="form-label fs-base" for="email">Email</label>
-                        <input class="form-control form-control-lg" type="email" placeholder="Adresse email" required id="email">
+                        <input class="form-control form-control-lg" type="email" placeholder="Adresse email" required name="email">
                     </div>
                     <div class="col-sm-6">
                         <label class="form-label fs-base" for="phone">Numéro</label>
-                        <input class="form-control form-control-lg" type="text" placeholder="Numéro de Téléphone" id="phone">
+                        <input class="form-control form-control-lg" type="text" placeholder="Numéro de Téléphone" name="phone">
                     </div>
                     <div class="col-sm-12">
                         <label class="form-label fs-base" for="message">Message</label>
-                        <textarea class="form-control form-control-lg" rows="6" placeholder="Ecrire votre message ici..." required id="message"></textarea>
+                        <textarea class="form-control form-control-lg" rows="6" placeholder="Ecrire votre message ici..." required name="message"></textarea>
                     </div>
                     <!-- <div class="col-sm-12">
                         <div class="form-check form-check-inline">

@@ -36,9 +36,7 @@ if (isset($_POST['createUser'])) {
     }
 }
 
-// Check if the 'update user' button is clicked
 if (isset($_POST['updateUser'])) {
-    // get the input data from the form
     $nom = validate($_POST['nom']);
     $prenom = validate($_POST['prenom']);
     $email = validate($_POST['email']);
@@ -47,39 +45,27 @@ if (isset($_POST['updateUser'])) {
     $status = validate($_POST['status']);
     $address = validate($_POST['address']);
 
-    // get the 'id' of the user to be updated
     $userId = validate($_POST['userId']);
 
-    // Get the current data of the user from the 'users' table
     $user = getUserById($userId, "users");
 
-    // Check if there was an error while fetching the data
     if ($user['status'] != 200) {
-        // If there was an error, redirect to the 'user-edit.php' page with an error message
         redirect("../admin/users/user-edit.php?id=" . $userId, "Erreur de modification, veuillez réessayer");
     }
 
-    // Create SQL query for updating the data in the 'users' table
     $query = "UPDATE users SET nom = '$nom', prenom = '$prenom', email = '$email', phone = '$phone', role = '$role', status = '$status', address = '$address'
             WHERE id = '$userId' ";
 
-    // Execute the SQL query
     $result = mysqli_query($connection, $query);
 
-    // Check if the data was updated successfully
     if ($result) {
-        // If the data was updated successfully, redirect to the 'users.php' page with a success message
         redirect("../admin/users/users.php", "Félicitations ! Infos mise à jour avec succes.");
     } else {
-        // If there was an error, redirect to the 'create-users.php' page with an error message
         redirect("../admin/users/user-edit.php", "Erreur de mise à jour, veuillez réessayer");
     }
 }
 
 if (isset($_POST['settings'])) {
-    // echo "Param";
-
-    // get the input data from the form
     $title = validate($_POST['title']);
     $slug = validate($_POST['slug']);
     $small_description = validate($_POST['small_description']);
@@ -107,12 +93,9 @@ if (isset($_POST['settings'])) {
 
             $settingResult = mysqli_stmt_execute($stmt);
 
-            // Check if the data was inserted successfully
             if ($settingResult) {
-                // If the data was inserted successfully, redirect to the 'settings.php' page with a success message
                 redirect("../admin/pages/settings.php", "Félicitations ! Les informations du site ont été mise à jour avec succes.");
             } else {
-                // If there was an error, redirect to the 'settings.php' page with an error message
                 redirect("../admin/pages/settings.php", "Erreur d'enregistrement, veuillez réessayer");
             }
 
@@ -140,20 +123,14 @@ if (isset($_POST['settings'])) {
                 ";
         $result = mysqli_query($connection, $query);
         if ($result) {
-            // If the data was inserted successfully, redirect to the 'settings.php' page with a success message
             redirect("../admin/pages/settings.php", "Félicitations ! Les informations du site ont été mise à jour avec succes.");
         } else {
-            // If there was an error, redirect to the 'settings.php' page with an error message
             redirect("../admin/pages/settings.php", "Erreur d'enregistrement, veuillez réessayer");
         }
     }
 }
 
-// Check if the 'social media' button is clicked
 if (isset($_POST['createSM'])) {
-    // echo "true";
-
-    // get the input data from the form
     $nom = validate($_POST['nom']);
     $url = validate($_POST['url']);
     $status = validate($_POST['status']);
@@ -182,38 +159,27 @@ if (isset($_POST['createSM'])) {
 }
 
 
-// Check if the 'social media' update button is clicked
 if (isset($_POST['updateSM'])) {
-    // get the input data from the form
     $nom = validate($_POST['nom']);
     $url = validate($_POST['url']);
     $status = validate($_POST['status']);
 
-    // get the 'id' of the user to be updated
     $smId = validate($_POST['smId']);
 
-    // Get the current data of the user from the 'social media' table
     $sm = getDataById($smId, "social_medias");
 
-    // Check if there was an error while fetching the data
     if ($sm['status'] != 200) {
-        // If there was an error, redirect to the 'user-edit.php' page with an error message
         redirect("../admin/pages/edit-social-media.php?id=" . $smId, "Erreur de modification, veuillez réessayer");
     }
 
-    // Create SQL query for updating the data in the 'social media' table
     $query = "UPDATE social_medias SET nom = '$nom', url = '$url', status = '$status'
             WHERE id = '$smId' ";
 
-    // Execute the SQL query
     $result = mysqli_query($connection, $query);
 
-    // Check if the data was updated successfully
     if ($result) {
-        // If the data was updated successfully, redirect to the 'users.php' page with a success message
         redirect("../admin/pages/lists-social-media.php", "Félicitations ! Infos mise à jour avec succes.");
     } else {
-        // If there was an error, redirect to the 'create-users.php' page with an error message
         redirect("../admin/pages/lists-social-media.php", "Erreur de mise à jour, veuillez réessayer");
     }
 }
@@ -245,45 +211,32 @@ if (isset($_POST['createClient'])) {
     }
 }
 
-
-// Check if the 'update client' button is clicked
 if (isset($_POST['updateClient'])) {
-    // get the input data from the form
     $nom = validate($_POST['nom']);
     $prenom = validate($_POST['prenom']);
     $email = validate($_POST['email']);
     $phone = validate($_POST['phone']);
     $address = validate($_POST['address']);
 
-    // get the 'id' of the client to be updated
     $clientId = validate($_POST['clientId']);
 
-    // Get the current data of the client from the 'clients' table
     $client = getDataById($clientId, "clients");
 
-    // Check if there was an error while fetching the data
     if ($client['status'] != 200) {
-        // If there was an error, redirect to the 'edit-client.php' page with an error message
         redirect("../admin/clients/edit-client.php?id=" . $clientId, "Erreur de modification, veuillez réessayer");
     }
 
-    // Create SQL query for updating the data in the 'clients' table
     $query = "UPDATE clients SET nom = '$nom', prenom = '$prenom', email = '$email', phone = '$phone', address = '$address'
             WHERE id = '$clientId' ";
 
-    // Execute the SQL query
     $result = mysqli_query($connection, $query);
 
-    // Check if the data was updated successfully
     if ($result) {
-        // If the data was updated successfully, redirect to the 'lists-client.php' page with a success message
         redirect("../admin/clients/lists-client.php", "Félicitations ! Infos mise à jour avec succes.");
     } else {
-        // If there was an error, redirect to the 'create-clients.php' page with an error message
         redirect("../admin/clients/edit-client.php", "Erreur de mise à jour, veuillez réessayer");
     }
 }
-
 
 
 if (isset($_POST['createRepair'])) {
@@ -297,7 +250,6 @@ if (isset($_POST['createRepair'])) {
     if (!is_dir($directory)) {
         mkdir($directory, 0777, true);
     }
-    // Gestion du téléchargement de l'image
     $image = validate($_FILES['image']['name']);
     $imagePath = __DIR__ . '/images/' . $image;
 
@@ -330,11 +282,6 @@ if (isset($_POST['createRepair'])) {
         echo "Erreur de préparation de la requête : " . mysqli_error($connection);
     }
 }
-
-
-// La réparation a bien été modifiée pour le client
-//             <strong>".['firstname']." ".['lastname']."</strong>. Vous pouvez maintenant cons
-//             ulter la fiche de cette réparation
 
 
 if (isset($_POST['updateRepair'])) {
@@ -382,7 +329,6 @@ if (isset($_POST['updateRepair'])) {
 if (isset($_POST['createTool'])) {
     // echo "true";
 
-    // get the input data from the form
     $numero_serie = validate($_POST['numero_serie']);
     $modele = validate($_POST['modele']);
     $reparation_id = validate($_POST['reparation_id']);
@@ -441,7 +387,6 @@ if (isset($_POST['createServices'])) {
     $title = validate($_POST['title']);
     $slug = validate($_POST['slug']);
 
-    // Gestion du téléchargement de l'image
     $image = validate($_FILES['image']['name']);
     $imagePath = __DIR__ . '/images/' . $image;
     move_uploaded_file($_FILES['image']['tmp_name'], $imagePath);
@@ -482,7 +427,6 @@ if (isset($_POST['updateServices'])) {
     $title = validate($_POST['title']);
     $slug = validate($_POST['slug']);
 
-    // Gestion du téléchargement de l'image
     $image = validate($_FILES['image']['name']);
     $imagePath = __DIR__ . '/images/' . $image;
     move_uploaded_file($_FILES['image']['tmp_name'], $imagePath);
@@ -496,7 +440,6 @@ if (isset($_POST['updateServices'])) {
 
     $serviceId = validate($_POST['serviceId']);
     $service = getDataById($serviceId, "activites");
-    // Vérification si une nouvelle image a été ajoutée ou pas
 
     if ($service['status'] != 200) {
         redirect("../admin/services/edit-service.php?id=".$serviceId, "Erreur de modification, veuillez réessayer");
@@ -514,5 +457,60 @@ if (isset($_POST['updateServices'])) {
         redirect("../admin/services/services.php", "Erreur ! Erreur de modification.");
     }
 
+}
+
+
+if (isset($_POST['submitMessage'])) {
+    $nom = validate($_POST['nom']);
+    $prenom = validate($_POST['prenom']);
+    $phone = validate($_POST['phone']);
+    $service_type = validate($_POST['service_type']);
+    $message = validate($_POST['message']);
+
+    $query = "INSERT INTO enquiries (`nom`, `prenom`, `phone`, `service_type`, `message`) VALUES (?, ?, ?, ?, ?)";
+    $stmt = mysqli_prepare($connection, $query);
+
+    if ($stmt) {
+        mysqli_stmt_bind_param($stmt, 'sssss', $nom, $prenom, $phone, $service_type, $message);
+
+        $result = mysqli_stmt_execute($stmt);
+
+        mysqli_stmt_close($stmt);
+
+        if ($result) {
+            redirect("../services.php", "Félicitations ! Votre demande de renseignement a été envoyée.");
+        } else {
+            redirect("../services.php", "Erreur d'envoi, veuillez réessayer");
+        }
+    } else {
+        echo "Erreur de préparation de la requête : " . mysqli_error($connection);
+    }
+}
+
+if (isset($_POST['contactUs'])) {
+    $nom = validate($_POST['nom']);
+    $prenom = validate($_POST['prenom']);
+    $email = validate($_POST['email']);
+    $phone = validate($_POST['phone']);
+    $message = validate($_POST['message']);
+
+    $query = "INSERT INTO contact (`nom`, `prenom`, `email`, `phone`,  `message`) VALUES (?, ?, ?, ?, ?)";
+    $stmt = mysqli_prepare($connection, $query);
+
+    if ($stmt) {
+        mysqli_stmt_bind_param($stmt, 'sssss', $nom, $prenom, $email, $phone, $message);
+
+        $result = mysqli_stmt_execute($stmt);
+
+        mysqli_stmt_close($stmt);
+
+        if ($result) {
+            redirect("../services.php", "Félicitations ! Votre message a été envoyé.");
+        } else {
+            redirect("../services.php", "Erreur d'envoi, veuillez réessayer");
+        }
+    } else {
+        echo "Erreur de préparation de la requête : " . mysqli_error($connection);
+    }
 }
 

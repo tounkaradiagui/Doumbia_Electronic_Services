@@ -30,15 +30,8 @@
 
     <nav class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav navbar-nav-scroll me-auto" style="--ar-scroll-height: 520px;">
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">Services</a>
-          <ul class="dropdown-menu">
-            <li class="dropdown">
-              <a class="dropdown-item" href="#">Réparations</a>
-              <a class="dropdown-item" href="#">Achats</a>
-              <a class="dropdown-item" href="#">Autres</a>
-            </li>
-          </ul>
+        <li class="nav-item">
+          <a class="nav-link" href="#services">Services</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="./contact.php">Contact</a>
