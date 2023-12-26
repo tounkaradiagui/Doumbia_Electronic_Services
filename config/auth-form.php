@@ -13,6 +13,7 @@ if(isset($_POST['login'])){
     $result = mysqli_query($connection, $query);
 
     if($result){
+        // $userRow = mysqli_fetch_array($result, MYSQLI_ASSOC);
 
         if(mysqli_num_rows($result) == 1){
 
