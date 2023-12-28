@@ -19,10 +19,17 @@ if (isset($_POST['createUser'])) {
 
     $stmt = mysqli_prepare($connection, $query);
 
+    $options = [
+        'cost' => 12
+    ];
+
+    $hashedPassword = password_hash($password, PASSWORD_BCRYPT, $options);
+
     if ($stmt) {
-        mysqli_stmt_bind_param($stmt, "sssssssi", $nom, $prenom, $email, $password, $phone, $role, $status, $address);
+        mysqli_stmt_bind_param($stmt, "sssssssi", $nom, $prenom, $email, $hashedPassword, $phone, $role, $status, $address);
 
         $creatUserResult = mysqli_stmt_execute($stmt);
+        mysqli_stmt_close($stmt);
 
         if ($creatUserResult) {
             redirect("../admin/users/users.php", "Félicitations ! L'utilisateur a été ajouté avec succes.");
@@ -30,7 +37,6 @@ if (isset($_POST['createUser'])) {
             redirect("../admin/users/create-users.php", "Erreur d'enregistrement, veuillez réessayer");
         }
 
-        mysqli_stmt_close($stmt);
     } else {
         echo "Erreur de préparation de la requête : " . mysqli_error($connection);
     }
@@ -513,4 +519,5 @@ if (isset($_POST['contactUs'])) {
         echo "Erreur de préparation de la requête : " . mysqli_error($connection);
     }
 }
+
 

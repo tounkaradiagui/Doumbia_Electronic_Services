@@ -1,5 +1,4 @@
 <?php
-// Start session
 session_start();
 
 // Include database connection file
@@ -19,6 +18,7 @@ function validate($inputData)
     $validate = mysqli_real_escape_string($connection, $inputData);
     return trim($validate);
 }
+
 
 /**
  * Redirect the user to the specified URL with a message
@@ -98,7 +98,9 @@ function getData($data)
     $table = validate($data);
 
     // Get all users from the database and store them in an array
-    $query = "SELECT * FROM $table WHERE deleted = 0";
+    // $date = validate($_GET['date']);
+    // $status = validate($_GET['status']);
+    $query = "SELECT * FROM $table WHERE deleted = 0 ORDER BY id DESC";
     $result = mysqli_query($connection, $query);
     return $result;
 }
@@ -188,7 +190,7 @@ function deleteFn($userId, $tableName)
 
     // Mise à jour de la colonne deleted à 1 pour marquer l'entrée comme "supprimée"
     $query = "UPDATE $table SET deleted = 1 WHERE id = '$id'";
-    
+
     // Execute query
     $deleteResponse = mysqli_query($connection, $query);
     return $deleteResponse;
@@ -290,6 +292,26 @@ function getToolTitle($reparationId)
     return "Titre non trouvé";
 }
 
+function filterData()
+{
+    // if(isset($_GET['date']) && $_GET['date'] != "" && isset($_GET['status']) && $_GET['status'] != ""){
+    //     $data = explode("/",$_GET["date"]);  //Conversion de la date en tableau pour extraire les
+    //     //chiffres du jour et du mois.
+    //     $jour = $data[0];                   //Jour (ex : 12).
+    //     $mois = $data[1]-1;                //Mois (ex : 09 -> 8).
+    //     $annee = $data[2];                 //Année (ex : 2003).
+    //     $timestamp=mktime(0,0,0,$mois+1,$jour,$annee);//On cr
+    //     //ée un timestamp à partir des chiffres récupérés.
+    //     $where="WHERE DATE(dateHeureRetour)=DATE('".date("d/m/Y",$timestamp)."') AND
+    //     etat='".$_GET['status']."' ";
+    //     }elseif(isset($_GET['date']) && $_GET['date']!=""){
+    //         $where="WHERE DATE(dateHeurereception)<='".$_GET['date']."'";
+    //         }elseif(isset($_GET['status'])){$where="WHERE etat='".$_GET['status']."'";}
+    //         return $where;
+
+    // }
+}
+
 // ------------------------------ END BACKEND SIDE ---------------------------- //
 
 function getServicesData($data)
@@ -298,7 +320,7 @@ function getServicesData($data)
     $table = validate($data);
 
     // Get all users from the database and store them in an array
-    $query = "SELECT * FROM $table WHERE deleted = 0 AND status = 'visible' ORDER BY updated_at DESC";
+    $query = "SELECT * FROM $table WHERE deleted = 0 AND status = 'visible' ORDER BY id DESC";
     $result = mysqli_query($connection, $query);
 
     // Vérifiez si la requête a échoué
@@ -308,7 +330,8 @@ function getServicesData($data)
     return $result;
 }
 
-function formatDate($dateString) {
+function formatDate($dateString)
+{
     // Convertir la chaîne de date en objet DateTime
     $date = new DateTime($dateString);
 
@@ -317,3 +340,50 @@ function formatDate($dateString) {
 
     return $formattedDate;
 }
+
+function is_register_input_empty($nom, $username, $email, $phone, $password, $password_confirmation)
+{
+    if (empty($nom) || empty($username) || empty($email) || empty($phone) || empty($password) || empty($password_confirmation)) {
+        return true;
+    } else{
+        return false;
+    } 
+}
+
+// Fonction pour valider une adresse e-mail
+function is_email_invalid($email)
+{
+    return !filter_var($email, FILTER_VALIDATE_EMAIL);
+}
+
+// Fonction pour valider si l'adresse e-mail est déjà enregistrée
+function is_email_registered($connection, $email)
+{
+    // Utilisez une requête préparée pour éviter les attaques par injection SQL
+    $query = "SELECT COUNT(*) as count FROM users WHERE email = ?";
+    $stmt = mysqli_prepare($connection, $query);
+
+    if ($stmt) {
+        mysqli_stmt_bind_param($stmt, "s", $email);
+        mysqli_stmt_execute($stmt);
+        mysqli_stmt_bind_result($stmt, $count);
+        mysqli_stmt_fetch($stmt);
+        mysqli_stmt_close($stmt);
+
+        return $count > 0; // Retourne vrai si l'e-mail est déjà enregistré, sinon faux
+    } else {
+        echo "Erreur de préparation de la requête : " . mysqli_error($connection);
+        return false;
+    }
+}
+
+
+function is_login_input_empty($email, $password)
+{
+    if (empty($email) || empty($password)) {
+        return true;
+    } else{
+        return false;
+    } 
+}
+

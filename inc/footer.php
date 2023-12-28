@@ -36,7 +36,7 @@
                   <a class="nav-link fw-normal px-0 py-1" href="https://devdiagui.ml">Portfolio</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link fw-normal px-0 py-1" href="https://diagui-shop.com">Site Wweb</a>
+                  <a class="nav-link fw-normal px-0 py-1" href="https://diagui-shop.com">Site Web</a>
                 </li>
                
               </ul>

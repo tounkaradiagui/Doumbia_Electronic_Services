@@ -1,5 +1,12 @@
 </div>
-
+<!-- Footer -->
+<footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Copyright &copy; Your Website 2020</span>
+                    </div>
+                </div>
+            </footer>
 </div>
 </div>
 <!-- End of Page Wrapper -->
@@ -48,10 +55,31 @@
 
 <!-- Page level plugins -->
 <script src="../assets/vendor/datatables/jquery.dataTables.min.js"></script>
+<script src="../assets/vendor/datatables/jquery.dataTables.js"></script>
 <script src="../assets/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+<script src="../assets/vendor/datatables/dataTables.bootstrap4.js"></script>
 
 <!-- Page level custom scripts -->
 <script src="../assets/js/demo/datatables-demo.js"></script>
+<script src="//cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+
+<script>
+  $(document).ready(function() {
+    $('#myTable').DataTable({
+        "columns": [
+            null, // Première colonne
+            null, // Deuxième colonne
+            // ... Ajoutez d'autres colonnes au besoin
+        ]
+    });
+
+});
+
+
+</script>
+
 
 
 </body>

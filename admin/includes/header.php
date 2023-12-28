@@ -23,11 +23,13 @@ include '../dashboard/check-auth.php';
     <!-- Custom styles for this template-->
     <link href="../assets/css/sb-admin-2.min.css" rel="stylesheet">
     <link href="../assets/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
-
+    <link href="../assets/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
     <!-- include libraries(jQuery, bootstrap) -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" crossorigin="anonymous">
     <!-- include summernote css link -->
     <!-- <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet"> -->
+    <link rel="stylesheet" href="//cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
 
 </head>
 

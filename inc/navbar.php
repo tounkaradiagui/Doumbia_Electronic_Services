@@ -19,10 +19,23 @@
       </label>
     </div>
 
-    <a class="btn btn-primary btn-sm fs-sm order-lg-3 d-none d-sm-inline-flex" href="./login.php" rel="noopener">
-      <i class="ai-cart fs-xl me-2 ms-n1"></i>
-      Connexion
-    </a>
+    <?php
+    // Vérifie si l'utilisateur est connecté (par exemple, en vérifiant la présence de la variable de session)
+    if (!isset($_SESSION['auth'])) {
+    ?>
+      <a class="btn btn-primary btn-sm fs-sm order-lg-3 d-none d-sm-inline-flex" href="./login.php" rel="noopener">
+        <i class="ai-cart fs-xl me-2 ms-n1"></i>
+        Connexion
+      </a>
+    <?php } else {
+    ?>
+      <a class="btn btn-primary btn-sm fs-sm order-lg-3 d-none d-sm-inline-flex" href="./logout.php" rel="noopener">
+        <i class="ai-cart fs-xl me-2 ms-n1"></i>
+        Déconnexion
+      </a>
+    <?php
+    }
+    ?>
 
     <button class="navbar-toggler ms-sm-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -41,12 +54,24 @@
         </li>
       </ul>
       <div class="d-sm-none p-3 mt-n3">
-        <a class="btn btn-primary w-100 mb-1" href="./login.php" rel="noopener">
-          <i class="ai-cart fs-xl me-2 ms-n1"></i>
-          Connexion
-        </a>
+        <?php
+        // Vérifie si l'utilisateur est connecté (par exemple, en vérifiant la présence de la variable de session)
+        if (!isset($_SESSION['auth'])) {
+        ?>
+          <a class="btn btn-primary w-100 mb-1" href="./login.php" rel="noopener">
+            <i class="ai-cart fs-xl me-2 ms-n1"></i>
+            Connexion
+          </a>
+        <?php } else {
+        ?>
+          <a class="btn btn-primary btn-sm fs-sm order-lg-3 d-none d-sm-inline-flex" href="./logout.php" rel="noopener">
+            <i class="ai-cart fs-xl me-2 ms-n1"></i>
+            Déconnexion
+          </a>
+        <?php
+        }
+        ?>
       </div>
     </nav>
   </div>
 </header>
-

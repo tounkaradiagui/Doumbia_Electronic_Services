@@ -54,12 +54,12 @@
 
 
   <!-- Page loading spinner -->
-  <div class="page-loading active">
+  <!-- <div class="page-loading active">
     <div class="page-loading-inner">
       <div class="page-spinner"></div>
       <span>Chargement...</span>
     </div>
-  </div>
+  </div> -->
 
 
   <!-- Customizer modal -->

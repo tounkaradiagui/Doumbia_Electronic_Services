@@ -4,6 +4,8 @@
     
     if(isset($_SESSION['auth'])){
         redirect('./index.php', "Vous êtes déjà connecté !");
+    }else{
+        
     }
 ?>
 <section class="bg-dark position-relative min-vh-10 overflow-hidden mb-4" data-bs-theme="dark">
