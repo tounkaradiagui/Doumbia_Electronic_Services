@@ -58,7 +58,6 @@ function displayMessage()
 function checkUserId($userId)
 {
     if (isset($_GET[$userId])) {
-        // echo "ok";
         if ($_GET[$userId] !== null) {
             return $_GET[$userId];
         } else {
@@ -70,20 +69,32 @@ function checkUserId($userId)
     }
 }
 
-function checkId($msId)
-{
-    if (isset($_GET[$msId])) {
-        // echo "ok";
-        if ($_GET[$msId] !== null) {
-            return $_GET[$msId];
-        } else {
 
+/**
+ * Checks the presence of a specific ID parameter in the URL ($_GET) and returns its value.
+ *
+ * @param string $id The name of the ID parameter to be checked.
+ * @return mixed|string Returns the ID value if present, otherwise returns a message indicating the ID is not found.
+ */
+function checkId($id)
+{
+    // Check if the ID parameter is set in the URL
+    if (isset($_GET[$id])) {
+
+        // Check if the ID value is not null and return it
+        if ($_GET[$id] !== null) {
+            return $_GET[$id];
+        } else {
+            // Return a message if the ID value is null
             return "Id est introuvable";
         }
     } else {
+        // Return a message if the ID parameter is not set in the URL
         return "Id est introuvable";
     }
 }
+
+
 
 /**
  * Get all data from the specified table
@@ -115,10 +126,13 @@ function getData($data)
  */
 function getUserById($id, $table)
 {
+     // Establish a connection to the database
     global $connection;
+
     $validateTable = validate($table);
     $validateId = validate($id);
 
+    // Define a query to select the user by ID
     $query = "SELECT * FROM $validateTable WHERE id = '$validateId' LIMIT 1";
     $result = mysqli_query($connection, $query);
 
@@ -182,22 +196,37 @@ function getDataById($id, $table)
     }
 }
 
+
+/**
+ * Deletes a record from the specified table by marking it as deleted.
+ *
+ * @param int $userId The ID of the record to be deleted.
+ * @param string $tableName The name of the table from which the record will be deleted.
+ * @return bool Returns true if the record is successfully marked as deleted, false otherwise.
+ */
 function deleteFn($userId, $tableName)
 {
+    // Access the global database connection variable
     global $connection;
+
+    // Validate the table name and user ID to prevent SQL injection
     $table = validate($tableName);
     $id = validate($userId);
 
-    // Mise à jour de la colonne deleted à 1 pour marquer l'entrée comme "supprimée"
+    // Prepare the SQL query to mark the record as deleted in the specified table
     $query = "UPDATE $table SET deleted = 1 WHERE id = '$id'";
 
-    // Execute query
+    // Execute the query and store the response
     $deleteResponse = mysqli_query($connection, $query);
+
+    // Return the result of the delete operation (true or false)
     return $deleteResponse;
 }
 
+
 function logoutSession()
 {
+    // Unset the session variables for authentication, user role, and logged-in user details
     unset($_SESSION['auth']);
     unset($_SESSION['loggedInUserRole']);
     unset($_SESSION['loggedInUser']);
@@ -205,8 +234,12 @@ function logoutSession()
 
 function siteConfig($column)
 {
+    // Retrieve site configuration settings from the database
     $setting = getDataById(1, 'settings');
+
+    // Check if the query was successful
     if ($setting['status'] == 200) {
+        // Return the requested column value from the settings table
         return $setting['data'][$column];
     }
 }
@@ -225,7 +258,6 @@ function getClientData($data)
     global $connection;
     $table = validate($data);
 
-    // Get all users from the database and store them in an array
     $query = "SELECT id, nom, prenom FROM $table";
 
     $result = mysqli_query($connection, $query);
@@ -319,7 +351,7 @@ function getServicesData($data)
     global $connection;
     $table = validate($data);
 
-    // Get all users from the database and store them in an array
+    // Get all data from the database and store them in an array
     $query = "SELECT * FROM $table WHERE deleted = 0 AND status = 'visible' ORDER BY id DESC";
     $result = mysqli_query($connection, $query);
 
@@ -377,7 +409,7 @@ function is_email_registered($connection, $email)
     }
 }
 
-
+// Check if the email or password fields are empty.
 function is_login_input_empty($email, $password)
 {
     if (empty($email) || empty($password)) {
@@ -387,3 +419,19 @@ function is_login_input_empty($email, $password)
     } 
 }
 
+
+// Counts the number of rows in a given table.
+function countData($table)
+{
+    global $connection;
+    $myTable = validate($table);
+    $query = "SELECT COUNT(*) AS rowCount FROM $myTable WHERE deleted = 0";
+    $result = mysqli_query($connection, $query);
+    
+    if ($result) {
+        $row = mysqli_fetch_assoc($result);
+        return $row['rowCount'];
+    } else {
+        return 0; // Return 0 if there's an error
+    }
+}

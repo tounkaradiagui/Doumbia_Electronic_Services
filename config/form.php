@@ -103,11 +103,11 @@ if (isset($_POST['settings'])) {
 
         // Prepare and execute the query, handle success or failure
         $stmt = mysqli_prepare($connection, $insert);
-        mysqli_stmt_close($stmt);
-
+        
         if ($stmt) {
             mysqli_stmt_bind_param($stmt, "sssssssssi", $title, $slug, $small_description, $description, $meta_title, $meta_keyword, $meta_description, $address, $phone, $email);
             $settingResult = mysqli_stmt_execute($stmt);
+            mysqli_stmt_close($stmt);
 
             if ($settingResult) {
                 redirect("../admin/pages/settings.php", "Félicitations ! Les infos du site ont été mise à jour.");
@@ -184,6 +184,7 @@ if (isset($_POST['createSM'])) {
 }
 
 // Check if the form for updating an existing social media entry is submitted
+
 if (isset($_POST['updateSM'])) {
     // Validate and retrieve social media data
     $nom = validate($_POST['nom']);
@@ -220,34 +221,40 @@ if (isset($_POST['updateSM'])) {
     }
 }
 
-
+// Check if the form for creating a new client is submitted
 if (isset($_POST['createClient'])) {
+    // Validate and retrieve client data
     $nom = validate($_POST['nom']);
     $prenom = validate($_POST['prenom']);
     $email = validate($_POST['email']);
     $phone = validate($_POST['phone']);
     $address = validate($_POST['address']);
 
-    $query = "INSERT INTO clients (`nom`, `prenom`, `email`, `phone`, `address`) 
-                VALUES (?, ?, ?, ?, ?)";
+    // Prepare SQL query for inserting client data
+    $query = "INSERT INTO clients (`nom`, `prenom`, `email`, `phone`, `address`) VALUES (?, ?, ?, ?, ?)";
 
+    // Prepare and execute the query, handle success or failure
     $stmt = mysqli_prepare($connection, $query);
-    mysqli_stmt_close($stmt);
+    
     if ($stmt) {
         mysqli_stmt_bind_param($stmt, "ssssi", $nom, $prenom, $email, $phone, $address);
         $result = mysqli_stmt_execute($stmt);
+        mysqli_stmt_close($stmt);
 
         if ($result) {
-            redirect("../admin/clients/lists-client.php", "Félicitations ! Le client a été ajouté avec succes.");
+            redirect("../admin/clients/lists-client.php", "Félicitations ! Le client a été ajouté");
         } else {
-            redirect("../admin/clients/create-client.php", "Erreur d'enregistrement, veuillez réessayer");
+            redirect("../admin/clients/create-client.php", "Erreur d'enregistrement. Veuillez réessayer");
         }
+
     } else {
-        echo "Erreur de préparation de la requête : " . mysqli_error($connection);
+        echo "Erreur de preparation de la requête: " . mysqli_error($connection);
     }
 }
 
+// Check if the form for updating an existing client is submitted
 if (isset($_POST['updateClient'])) {
+    // Validate and retrieve client data
     $nom = validate($_POST['nom']);
     $prenom = validate($_POST['prenom']);
     $email = validate($_POST['email']);
@@ -256,14 +263,18 @@ if (isset($_POST['updateClient'])) {
 
     $clientId = validate($_POST['clientId']);
 
+    // Retrieve client data by ID
     $client = getDataById($clientId, "clients");
 
+    // Check if client data retrieval was successful
     if ($client['status'] != 200) {
         redirect("../admin/clients/edit-client.php?id=" . $clientId, "Erreur de modification, veuillez réessayer");
     }
 
+    // Prepare SQL query for updating client data
     $query = "UPDATE clients SET nom = ?, prenom = ?, email = ?, phone = ?, address = ? WHERE id = ?";
 
+    // Prepare and execute the query, handle success or failure
     $stmt = mysqli_prepare($connection, $query);
 
     if ($stmt) {
@@ -272,41 +283,45 @@ if (isset($_POST['updateClient'])) {
         mysqli_stmt_close($stmt);
 
         if ($result) {
-            redirect("../admin/clients/lists-client.php", "Félicitations ! Infos mise à jour avec succès.");
+            redirect("../admin/clients/lists-client.php", "Félicitations ! Les informations ont été mise à jour.");
         } else {
-            redirect("../admin/clients/edit-client.php", "Erreur de mise à jour, veuillez réessayer");
+            redirect("../admin/clients/edit-client.php", "Erreur de mise à jour. Veuillez réessayer");
         }
     } else {
-        redirect("../admin/clients/edit-client.php", "Erreur de préparation de la requête, veuillez réessayer");
+        redirect("../admin/clients/edit-client.php", "Erreur de preparation de la requête");
     }
 }
 
 
+// Check if the form for creating a new repair is submitted
 if (isset($_POST['createRepair'])) {
+    // Validate and retrieve repair data
     $title = validate($_POST['title']);
     $type_dispositif = validate($_POST['type_dispositif']);
     $date_reparation = validate($_POST['date_reparation']);
     $description_probleme = validate($_POST['description_probleme']);
 
+    // Create a directory for images if it doesn't exist
     $directory = __DIR__ . '/images';
-
     if (!is_dir($directory)) {
         mkdir($directory, 0777, true);
     }
+
+    // Move the uploaded image to the specified directory
     $image = validate($_FILES['image']['name']);
     $imagePath = __DIR__ . '/images/' . $image;
-
     move_uploaded_file($_FILES['image']['tmp_name'], $imagePath);
 
     $cout_estime = validate($_POST['cout_estime']);
     $statut_reparation = validate($_POST['statut_reparation']);
-
     $client_id = validate($_POST['client_id']);
 
+    // Prepare SQL query for inserting repair data
     $inserRepairData = "INSERT INTO reparations 
     (`title`, `type_dispositif`, `date_reparation`, `description_probleme`, `image`, `cout_estime`, `statut_reparation`, `client_id`) 
     VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
+    // Prepare and execute the query, handle success or failure
     $stmt = mysqli_prepare($connection, $inserRepairData);
     if ($stmt) {
 
@@ -326,14 +341,16 @@ if (isset($_POST['createRepair'])) {
     }
 }
 
-
+// Check if the form for updating an existing repair is submitted
 if (isset($_POST['updateRepair'])) {
+    // Validate and retrieve repair data
     $id = validate($_POST['id']);
     $title = validate($_POST['title']);
     $type_dispositif = validate($_POST['type_dispositif']);
     $date_reparation = validate($_POST['date_reparation']);
     $description_probleme = validate($_POST['description_probleme']);
 
+    // Move the uploaded image to the specified directory
     $image = validate($_FILES['image']['name']);
     $imagePath = __DIR__ . '/images/' . $image;
     move_uploaded_file($_FILES['image']['tmp_name'], $imagePath);
@@ -342,12 +359,15 @@ if (isset($_POST['updateRepair'])) {
     $statut_reparation = validate($_POST['statut_reparation']);
     $client_id = validate($_POST['client_id']);
 
+    // Retrieve repair data by ID
     $repair = getDataById($id, "reparations");
 
+    // Check if repair data retrieval was successful
     if ($repair['status'] != 200) {
         redirect("../admin/repairs/edit-repair.php?id=" . $id, "Erreur de modification, veuillez réessayer");
     }
 
+    // Prepare SQL query for updating repair data
     $query = "UPDATE reparations SET 
               title = ?, 
               type_dispositif = ?, 
@@ -359,6 +379,7 @@ if (isset($_POST['updateRepair'])) {
               client_id = ? 
               WHERE id = ?";
 
+    // Prepare and execute the query, handle success or failure
     $stmt = mysqli_prepare($connection, $query);
 
     if ($stmt) {
@@ -376,24 +397,24 @@ if (isset($_POST['updateRepair'])) {
     }
 }
 
-
+// Check if the form for creating a new tool is submitted
 if (isset($_POST['createTool'])) {
-    // echo "true";
-
+    // Validate and retrieve repair data
     $numero_serie = validate($_POST['numero_serie']);
     $modele = validate($_POST['modele']);
     $reparation_id = validate($_POST['reparation_id']);
 
+    // Prepare SQL query for inserting tool data
     $query = "INSERT INTO equipements (`numero_serie`, `modele`, `reparation_id`) VALUES (?, ?, ?)";
 
-
+    // Prepare and execute the query, handle success or failure
     $stmt = mysqli_prepare($connection, $query);
-
 
     if ($stmt) {
         mysqli_stmt_bind_param($stmt, 'sss', $numero_serie, $modele, $reparation_id);
 
         $result = mysqli_stmt_execute($stmt);
+        mysqli_stmt_close($stmt);
 
         if ($result) {
             redirect("../admin/tools/lists-tool.php", "Félicitations ! Le matériel a été ajouté avec succes.");
@@ -401,27 +422,31 @@ if (isset($_POST['createTool'])) {
             redirect("../admin/tolls/create-tool.php", "Erreur d'enregistrement, veuillez réessayer");
         }
 
-        mysqli_stmt_close($stmt);
     } else {
         echo "Erreur de préparation de la requête : " . mysqli_error($connection);
     }
 }
 
-
+// Check if the form for updating an existing tool is submitted
 if (isset($_POST['updateTool'])) {
+    // Validate and retrieve tool data
     $numero_serie = validate($_POST['numero_serie']);
     $modele = validate($_POST['modele']);
     $reparation_id = validate($_POST['reparation_id']);
     $toolId = validate($_POST['toolId']);
 
+    // Retrieve tool data by ID
     $tool = getDataById($toolId, "equipements");
 
+    // Check if tool data retrieval was successful
     if ($tool['status'] != 200) {
         redirect("../admin/tools/edit-tool.php?id=" . $toolId, "Erreur de modification, veuillez réessayer");
     }
 
+    // Prepare SQL query for updating tool data
     $query = "UPDATE equipements SET numero_serie = ?, modele = ?, reparation_id = ? WHERE id = ?";
 
+    // Prepare and execute the query, handle success or failure
     $stmt = mysqli_prepare($connection, $query);
 
     if ($stmt) {
@@ -441,8 +466,9 @@ if (isset($_POST['updateTool'])) {
 }
 
 
+// Check if the form for creating services is submitted
 if (isset($_POST['createServices'])) {
-    // echo "Param";
+    // Validate and retrieve services data
     $title = validate($_POST['title']);
     $slug = validate($_POST['slug']);
 
@@ -451,16 +477,16 @@ if (isset($_POST['createServices'])) {
     move_uploaded_file($_FILES['image']['tmp_name'], $imagePath);
 
     $description = validate($_POST['description']);
-
     $meta_title = validate($_POST['meta_title']);
     $meta_keyword = validate($_POST['meta_keyword']);
     $meta_description = validate($_POST['meta_description']);
-
     $status = validate($_POST['status']);
 
+    // Prepare SQL query for inserting service data
     $insert = "INSERT INTO activites (`title`, `slug`, `image`, `description`, `meta_title`, `meta_keyword`, `meta_description`, `status`)
                     VALUE ( ? , ? , ? , ? , ? , ? , ? , ?)";
 
+    // Prepare and execute the query, handle success or failure
     $stmt = mysqli_prepare($connection, $insert);
 
     if ($stmt) {
@@ -481,7 +507,9 @@ if (isset($_POST['createServices'])) {
     }
 }
 
+// Check if the form for updating services is submitted
 if (isset($_POST['updateServices'])) {
+    // Validate and retrieve service data
     $title = validate($_POST['title']);
     $slug = validate($_POST['slug']);
 
@@ -490,22 +518,25 @@ if (isset($_POST['updateServices'])) {
     move_uploaded_file($_FILES['image']['tmp_name'], $imagePath);
 
     $description = validate($_POST['description']);
-
     $meta_title = validate($_POST['meta_title']);
     $meta_keyword = validate($_POST['meta_keyword']);
     $meta_description = validate($_POST['meta_description']);
     $status = validate($_POST['status']);
-
     $serviceId = validate($_POST['serviceId']);
+
+    // Retrieve service data by ID
     $service = getDataById($serviceId, "activites");
 
+    // Check if service data retrieval was successful
     if ($service['status'] != 200) {
         redirect("../admin/services/edit-service.php?id=" . $serviceId, "Erreur de modification, veuillez réessayer");
     }
 
+    // Prepare SQL query for updating service data
     $query = "UPDATE activites SET title = ?, slug = ?, image = ?, description = ?,
               meta_title = ?, meta_keyword = ?, meta_description = ?, status = ? WHERE id = ?";
 
+    // Prepare and execute the query, handle success or failure
     $stmt = mysqli_prepare($connection, $query);
 
     if ($stmt) {

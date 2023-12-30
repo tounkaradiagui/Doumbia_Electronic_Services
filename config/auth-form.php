@@ -26,7 +26,7 @@ if (isset($_POST['login'])) {
                 $_SESSION['loggedInUser'] = [
                     'id' => $row['id'],
                     'nom' => $row['nom'],
-                    'username' => $row['username'],
+                    'prenom' => $row['prenom'],
                     'email' => $row['email'],
                     'role' => $row['role']
                 ];

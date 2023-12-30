@@ -4,7 +4,7 @@ include('./inc/header.php') ?>
 <!-- Contact details -->
 <section class="bg-secondary py-5">
     <div class="container pt-5 pb-lg-2 pb-xl-4 py-xxl-5">
-
+    <?php displayMessage(); ?>
         <!-- Page title -->
         <h1 class="display-2">Contacts</h1>
         <p class="fs-lg pb-4 mb-2 mb-sm-3">
@@ -111,7 +111,7 @@ include('./inc/header.php') ?>
             <path d="M147.005 75.6331C152.135 70.7783 156.106 64.2374 159.153 57.9073C166.014 43.6372 174.127 22.1368 160.207 9.68505C152.924 3.17188 139.243 3.86644 130.324 5.29774C118.428 7.20428 107.295 8.85077 96.5031 14.783C85.8056 20.6599 79.0155 33.6997 77.0014 45.6686C75.4978 54.5776 79.63 63.6672 84.7391 70.7453C91.8208 80.5571 103.503 84.2003 114.817 84.3975C121.101 84.5081 127.716 84.0527 133.89 82.8121C138.932 81.7962 143.273 79.1597 147.005 75.6331Z" fill="#121519" fill-opacity="0.07"></path>
         </svg>
         <div class="card-body position-relative z-2 py-5">
-            <form class="mx-auto" style="max-width: 800px;" action="./config/form.php" method="POST">
+            <form class="mx-auto" style="max-width: 800px;" action="./config/sendEmail.php" method="POST">
                 <h2 class="h1 card-title text-center pb-4">Obtenez une consultation gratuite</h2>
                 <div class="row g-4">
                     <div class="col-sm-6">
