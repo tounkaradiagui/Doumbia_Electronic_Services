@@ -2,10 +2,13 @@
 include 'function.php';
 require_once '../vendor/autoload.php';
 
+// Charger les variables d'environnement
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/..'); // ajustez le chemin en conséquence
+$dotenv->load();
 
 $client = new Google_Client();
-$client->setClientId('375334045526-3fcdtgr9ublpger4p049rr00l4euoo0b.apps.googleusercontent.com');
-$client->setClientSecret('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');
+$client->setClientId($_ENV['CLIENT_ID']);
+$client->setClientSecret($_ENV['CLIENT_SECRET']);
 $client->setRedirectUri('http://127.0.0.1/web-app/Doumbia_Electro/index.php');
 $client->addScope('email');
 $client->addScope('profile');

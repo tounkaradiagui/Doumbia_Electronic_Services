@@ -5,7 +5,7 @@ include 'function.php';
 require_once '../vendor/autoload.php';
 
 // Charger les variables d'environnement
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/..'); // ajustez le chemin en conséquence
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/..');
 $dotenv->load();
 
 // Check if the 'contactUs' form has been submitted
