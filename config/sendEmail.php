@@ -4,6 +4,10 @@ require 'dbconnection.php';
 include 'function.php';
 require_once '../vendor/autoload.php';
 
+// Charger les variables d'environnement
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/..'); // ajustez le chemin en conséquence
+$dotenv->load();
+
 // Check if the 'contactUs' form has been submitted
 if(isset($_POST['contactUs'])){
     // Retrieve form data
@@ -15,16 +19,15 @@ if(isset($_POST['contactUs'])){
 }
 
 // Email configuration settings
-$host = "smtp.gmail.com";      // SMTP host
-$port = "587";                 // SMTP port
-$sslOrTls = "tls";             // SSL or TLS encryption
-$setUsername = "tounkaradiagui@gmail.com";  // Sender's email address
-$setPassword = "osmss";          // Sender's email password
+$host = $_ENV['SMTP_HOST'];
+$port = $_ENV['SMTP_PORT'];
+$sslOrTls = $_ENV['SMTP_ENCRYPTION'];
+$setUsername = $_ENV['SENDER_EMAIL'];
+$setPassword = $_ENV['SENDER_PASSWORD'];
+$emailAddress = $_ENV['SENDER_EMAIL'];
+$sendEmailTo = $_ENV['RECIPIENT_EMAIL'];
+$subject = $_ENV['SUBJECT'];
 
-// Email details
-$subject = "Nouvelle demande de renseignement";  // Email subject
-$emailAddress = "tounkaradiagui@gmail.com";      // Sender's email address
-$sendEmailTo = "devdiagui@gmail.com";        // Recipient's email address
 
 // Email content with inline styles for HTML
 $content = '

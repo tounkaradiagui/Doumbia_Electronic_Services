@@ -93,7 +93,7 @@
                 // Vérifier si l'utilisateur est connecté
                 if (isset($_SESSION['auth']) && $_SESSION['auth'] === true) {
                     // Récupérer le nom de l'utilisateur depuis la session
-                    $loggedInUserName = $_SESSION['loggedInUser']['username'];
+                    $loggedInUserName = $_SESSION['loggedInUser']['prenom'];
                     $loggedInUserLastName = $_SESSION['loggedInUser']['nom'];
 
                     // Afficher le nom de l'utilisateur

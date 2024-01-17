@@ -1,5 +1,7 @@
 {
     "require": {
-        "swiftmailer/swiftmailer": "6.0"
+        "swiftmailer/swiftmailer": "6.0",
+        "google/apiclient": "^2.15",
+        "vlucas/phpdotenv": "^5.6"
     }
 }
