@@ -6,7 +6,6 @@ Pour installer notre projet il est nécessaire d'avoir NodeJS et NPM installés 
 ordinateur. Vous pouvez télécharger ces deux logiciels gratuitement à cette adresse : https://nodejs.org/.
 
 
-
 ## Pour compiler et exécuter le projet:
 Voici les étapes à suivre pour compiler et lancer le projet locallement:
 1. Cloner le répertoire git sur votre ordinateur via Git Bash / Terminal bash sh,
@@ -49,9 +48,7 @@ Il est recommandé de créer des branches pour chaque modification afin de facil
 Assurez également de mentionner tout bug corrigé ou nouvelle feature implémentée.
 Merci de votre contribution !
 
-## Remarque
-Ce projet a été réalisé sous licence MIT. Vous pouvez utiliser,
-modifier et partager ce projet sans aucune restriction légale.
+### Remarque
 
 Si vous rencontrez des problèmes d'affichage, assurez-vous que votre système d'exploitation prend en charge ces technologies. Nous avons testé ce projet sur Windows 10 et Ubuntu 20.0.
 

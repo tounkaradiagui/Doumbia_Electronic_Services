@@ -10,11 +10,11 @@ Les différents rôles sont :
     - Administrator : accès total à tout le système, peut modifier toutes les données
     - Manager : peut ajouter / supprimer des clients, mais pas modifier les informations des clients ni ajouter / supprimer des catégories de services
     - User : peut consulter les informations des clients ainsi que les offres de services disponibles mais ne peut pas modifier ces informations ni ajouter / supprimer des clients ou des services.
-3. [ ] Utiliser au moins 2 technologies différentes dans votre projet (PHP, Tailwind CSS, JQuery, etc.)
+3. [x] Utiliser au moins 2 technologies différentes dans votre projet (PHP, Tailwind CSS, JQuery, etc.)
 
 4. [x] Rendre votre interface graphique responsive en utilisant Bootstrap ou un framework similaire.
     Vous pouvez utiliser un thème pré-conçu si vous le souhaitez.
-5. [ ] La base de données doit être gérée via SQL (MySQL ou PostGreSql…). Vous pouvez utiliser Eloquent ORM si vous travaillez avec Laravel, ou MySqli sinon.
+5. [x] La base de données doit être gérée via SQL (MySQL ou PostGreSql…). Vous pouvez utiliser Eloquent ORM si vous travaillez avec Laravel, ou MySqli sinon.
 
 6. [x] Implémenter une connexion sécurisée à votre base de données MySQL. Pour cela, vous pouvez utiliser PHP avec PDO ou MySQLi. Asssurez-vous que vos mots de passe ne soient pas stockés en clair dans votre code source.
 
@@ -35,12 +35,12 @@ La section "Réparation" du tableau de bord devrait permettre aux administrateur
 - Supprimer un équipement qui n’a plus besoin de réparation
 - Modifier les détails d’un équipement qui a déjà été réparé
 
-13. Intégrer une fonctionalité permettant de gérer les réseaux de Doumbia Electronic (vivement recommandé)
+13. [x] Intégrer une fonctionalité permettant de gérer les réseaux de Doumbia Electronic (vivement recommandé)
 
-14. Les formulaires doivent être validés avant d'être envoyés. Assurez-vous que vos contrôles sont suffisamment robust
+14.  Les formulaires doivent être validés avant d'être envoyés. Assurez-vous que vos contrôles sont suffisamment robust
 et qu'ils ne peuvent pas être contournés par un simple clic sur "Envoyer".
 
-15. La sécurité de nos s est une priorité absolue
+15. [x] La sécurité de nos s est une priorité absolue
 Utilisez des méthodes de cryptage appropriées pour protéger les données sensibles telles que les mots de passe.
 
 16. [x] Utilisez des méthodes de vérification pour  eviter les attaques par injection SQL
